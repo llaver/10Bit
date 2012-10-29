@@ -1,0 +1,9 @@
+FORMAT:
+
+MM-DD-YYYY
+-Significant point [Name of person]
+--Sub Point (If needed) [Name of person]
+---Minor Point (If needed) [Name of person]
+
+10-19-2012
+-Started production on game [Ryan Bell]

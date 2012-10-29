@@ -1,0 +1,24 @@
+Project:
+
+10bit : The project
+-src : all source code
+--tenbit.game : sub directory
+---main : essential classes used to start the game
+---main.Boot : Main method; calls runClass
+---main.runClass : The actual window/frame; calls <Opening Cutscene>, <MainMenu>
+
+
+----engine : Contains classes used for ingame functionality; engine.Engine will be called every time a game is started no matter the game mode.
+----engine.Engine : controls all ingame functionality; will be called no matter what the game mode; calls other classes in engine.
+
+----skirmish : Contains all classes used for the skirmish mode; skirmish.Skirmish will always be called when the Skirmish 
+----skirmish.Skirmish : Main skirmish class called when the Skirmish game mode is chosen from the main menu; will call tutorial class on first run.
+
+----campaign : controls the campaign game mode
+----campiagn.Campaign : Main campaign class called when the Campiagn game mode is chosen from the main menu; will call tutorial class on first run.
+
+----tutorial : 
+
+
+
+-bin : all compiled code
