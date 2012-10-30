@@ -11,14 +11,14 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class runClass extends JPanel implements KeyListener, Runnable
+public class RunClass extends JPanel implements KeyListener, Runnable
 {
 	private boolean[] keys;
 
 	private int x;
 	private int y;
 
-	public runClass(JFrame par)
+	public RunClass(JFrame par)
 	{
 		
 		setBackground(Color.BLACK);

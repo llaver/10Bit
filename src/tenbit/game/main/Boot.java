@@ -22,7 +22,7 @@ public class Boot extends JFrame
 
 	setSize(WIDTH, HEIGHT);
 	setBackground(Color.WHITE);
-        runClass rc = new runClass(this);
+        RunClass rc = new RunClass(this);
 	((Component)rc).setFocusable(true);
 
         getContentPane().add( rc );
