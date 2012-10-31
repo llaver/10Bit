@@ -29,18 +29,25 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		setVisible(true);
 	}
 	
-
+	private void callAll(Graphics window) {
+		//Opening cutscene
+		/* Opening cutscene/logos here */
+		//Main Menu
+		MainMenu mm = new MainMenu();
+		mm.paint(window);
+		
+	}
 	
 	
 
-        public void update(Graphics window)
-        {
-            paint(window);
-        }
+    public void update(Graphics window)
+    {
+        paint(window);
+    }
 
 	public void paint( Graphics window )
 	{
-		
+		callAll(window);
 	}
 
         @Override

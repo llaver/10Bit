@@ -13,8 +13,9 @@ import javax.swing.JPanel;
 import java.awt.Component;
 import java.awt.Font;
 
-public class Window {
-
+public interface Window {
 	
+	public void addPaint(Graphics paint);
+	public void getScreen();
 
 }
