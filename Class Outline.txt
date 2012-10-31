@@ -17,7 +17,8 @@ Project:
 ----campaign : controls the campaign game mode
 ----campiagn.Campaign : Main campaign class called when the Campiagn game mode is chosen from the main menu; will call tutorial class on first run.
 
-----tutorial : 
+----tutorial : Contains classes called whenever the tutorial is run
+----tutorial.Tutorial : Called when the tutorial is run. Calls whatever other classes are needed.
 
 
 
