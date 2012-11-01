@@ -28,6 +28,10 @@ public class MainMenu implements MouseInputListener  {
 		x = -1;
 		y = -1;
 	}
+	public MainMenu(MouseEvent click, MouseEvent drag, MouseEvent moved ) {
+		
+		
+	}
 	public void paint(Graphics window) {
 		Graphics g = window;
 		g.setColor(Color.CYAN);

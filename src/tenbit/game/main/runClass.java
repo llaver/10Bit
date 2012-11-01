@@ -11,6 +11,7 @@ import java.awt.event.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 public class RunClass extends JPanel implements KeyListener, Runnable
@@ -30,9 +31,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 		setVisible(true);
 		
-		MainMenu m = new MainMenu();
-		addMouseListener(m);
-	    addMouseMotionListener(m);
+		HandlerClass hc = new HandlerClass();
+		addMouseListener(hc);
+	    addMouseMotionListener(hc);
 	}
 	
 	private void callAll(Graphics window) {
@@ -85,47 +86,31 @@ public class RunClass extends JPanel implements KeyListener, Runnable
     public void keyReleased(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    private class HandlerClass implements MouseInputListener {
+    private class HandlerClass extends MouseInputAdapter {
+    	private MouseEvent me1;
+    	private MouseEvent me2;
+    	private MouseEvent me3;
 
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mouseClicked(MouseEvent e1) {
+			me1 = e1;
+			updateSize();
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mouseDragged(MouseEvent e2) {
+			me2 = e2;
+			updateSize();
 		}
 
 		@Override
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+		public void mouseMoved(MouseEvent e3) {
+			me3 = e3;
+			updateSize();
 			
 		}
-
-		@Override
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+		void updateSize() {
 			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseDragged(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseMoved(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
     }
