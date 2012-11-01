@@ -8,8 +8,10 @@ package tenbit.game.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 
 public class RunClass extends JPanel implements KeyListener, Runnable
 {
@@ -27,6 +29,10 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		new Thread(this).start();
 
 		setVisible(true);
+		
+		MainMenu m = new MainMenu();
+		addMouseListener(m);
+	    addMouseMotionListener(m);
 	}
 	
 	private void callAll(Graphics window) {
@@ -79,4 +85,49 @@ public class RunClass extends JPanel implements KeyListener, Runnable
     public void keyReleased(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    private class HandlerClass implements MouseInputListener {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+    }
 }
+

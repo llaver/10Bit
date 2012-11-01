@@ -23,6 +23,7 @@ public class MainMenu implements MouseInputListener  {
 	private int y;
 	private boolean test = false;
 	
+	
 	public MainMenu() {
 		x = -1;
 		y = -1;
@@ -32,9 +33,14 @@ public class MainMenu implements MouseInputListener  {
 		g.setColor(Color.CYAN);
 		g.drawRect(150, 250, 200, 100);
 		g.drawString("Testing!", 225, 225);
-		if(test)
+		g.drawString("X: ", 15, 15);
+		g.drawString(Integer.toString(x), 15, 20);
+		g.drawString("Y: ", 15, 35);
+		g.drawString(Integer.toString(y), 15, 40);
+		if(test) {
 			g.clearRect(151, 251, 198, 348);
 			g.drawString("It Worked!", 225, 225);
+		}
 	}
 	 
 	@Override
