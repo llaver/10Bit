@@ -10,27 +10,36 @@ import java.util.ArrayList;
 import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 import java.awt.Component;
 import java.awt.Font;
 
 import tenbit.game.main.window.*;
 
-public class MainMenu implements MouseInputListener  {
+public class MainMenu extends MouseInputAdapter  {
 	private MouseXY mClick = new MouseXY();
 	private MouseXY mMove = new MouseXY();
 	private int x;
 	private int y;
 	private boolean test = false;
+	private MouseEvent click, drag, move;
 	
 	
 	public MainMenu() {
 		x = -1;
 		y = -1;
 	}
-	public MainMenu(MouseEvent click, MouseEvent drag, MouseEvent moved ) {
+	public MainMenu(MouseEvent cl, MouseEvent dr, MouseEvent mv ) {
+		click = cl;
+		drag = dr;
+		move = mv;
 		
+		mouseMoved(move);
+		mouseClicked(click);
+		mouseDragged(drag);
 		
+		System.out.println(test);
 	}
 	public void paint(Graphics window) {
 		Graphics g = window;
@@ -38,9 +47,9 @@ public class MainMenu implements MouseInputListener  {
 		g.drawRect(150, 250, 200, 100);
 		g.drawString("Testing!", 225, 225);
 		g.drawString("X: ", 15, 15);
-		g.drawString(Integer.toString(x), 15, 20);
+		g.drawString(Integer.toString(x), 35, 15);
 		g.drawString("Y: ", 15, 35);
-		g.drawString(Integer.toString(y), 15, 40);
+		g.drawString(Integer.toString(y), 35, 35);
 		if(test) {
 			g.clearRect(151, 251, 198, 348);
 			g.drawString("It Worked!", 225, 225);
@@ -86,30 +95,6 @@ public class MainMenu implements MouseInputListener  {
 			 * Exit the game 
 			 */
 		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
