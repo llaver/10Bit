@@ -38,10 +38,9 @@ public class MainMenu extends MouseInputAdapter  {
 		mouseMoved(move);
 		mouseClicked(click);
 		mouseDragged(drag);
-		
 		System.out.println(test);
 	}
-	public boolean paint(Graphics window) {
+	public void paint(Graphics window) {
 		Graphics g = window;
 		g.setColor(Color.CYAN);
 		g.drawRect(150, 250, 200, 100);
@@ -50,11 +49,14 @@ public class MainMenu extends MouseInputAdapter  {
 		g.drawString(Integer.toString(x), 35, 15);
 		g.drawString("Y: ", 15, 35);
 		g.drawString(Integer.toString(y), 35, 35);
+		g.setColor(Color.BLACK);
+		g.clearRect(35, 14, 50, 25);
 		if(test) {
+			g.setColor(Color.BLACK);
 			g.clearRect(151, 251, 198, 348);
+			g.setColor(Color.CYAN);
 			g.drawString("It Worked!", 225, 225);
-		}
-		return false;
+		} 
 	}
 	 
 	@Override
@@ -62,6 +64,7 @@ public class MainMenu extends MouseInputAdapter  {
 		mMove = new MouseXY(e);
 		x = mMove.getX();
 		y = mMove.getY();
+		System.out.println("mouseMoved() in mm");
 	}
 
 	//TODO Change to the correct coordinates

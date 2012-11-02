@@ -20,6 +20,14 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	private int x;
 	private int y;
+	
+	private MouseEvent event1;
+	private MouseEvent event2;
+	private MouseEvent event3;
+	
+	MainMenu mm = new MainMenu();
+	MainMenu menu;
+	
 
 	public RunClass(JFrame par)
 	{
@@ -37,10 +45,18 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	}
 	
-	private void callAll(Graphics window) {
-		//Opening cutscene
-		/* Opening cutscene/logos here */
-		//Main Menu
+	public void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
+		event1 = e1;
+		event2 = e2;
+		event3 = e3;
+	}
+	
+	private void callAll(Graphics window) throws InterruptedException {
+		if((event1 != null) && (event2 != null) && (event3 != null)) {
+		menu = new MainMenu(event1, event2, event3);
+		menu.paint(window);
+		} else {			
+		}
 			
 	}
 	
@@ -53,8 +69,13 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
-		//callAll(window);
-		MainMenu mm = new MainMenu();			
+		try {
+			callAll(window);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
         @Override
@@ -111,11 +132,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		}
 		void updateSize() {
 			if((me1 != null) && (me2 != null) && (me3 != null)) {
-			MainMenu menu = new MainMenu(me1, me2, me3);
 			System.out.println((me1.getClickCount()) + ("  X: " + me2.getX() + "  Y: " + me2.getY()) + ("  X: " + me3.getX() + "  Y: " + me3.getY()) );
-			} else {
-				
-				
+			setEvent(me1, me2, me3);
+			} else {				
 			}
 		}
     }
