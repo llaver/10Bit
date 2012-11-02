@@ -41,7 +41,7 @@ public class MainMenu extends MouseInputAdapter  {
 		
 		System.out.println(test);
 	}
-	public void paint(Graphics window) {
+	public boolean paint(Graphics window) {
 		Graphics g = window;
 		g.setColor(Color.CYAN);
 		g.drawRect(150, 250, 200, 100);
@@ -54,6 +54,7 @@ public class MainMenu extends MouseInputAdapter  {
 			g.clearRect(151, 251, 198, 348);
 			g.drawString("It Worked!", 225, 225);
 		}
+		return false;
 	}
 	 
 	@Override

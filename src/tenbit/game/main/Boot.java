@@ -27,8 +27,7 @@ public class Boot extends JFrame
 
         getContentPane().add( rc );
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setVisible(true);
-        
+	setVisible(true);        
     }
     
     public static void main( String args[] )

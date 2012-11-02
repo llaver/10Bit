@@ -34,15 +34,14 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
 	    addMouseMotionListener(hc);
+
 	}
 	
 	private void callAll(Graphics window) {
 		//Opening cutscene
 		/* Opening cutscene/logos here */
 		//Main Menu
-		MainMenu mm = new MainMenu();
-		mm.paint(window);
-		
+			
 	}
 	
 	
@@ -54,7 +53,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
-		callAll(window);
+		//callAll(window);
+		MainMenu mm = new MainMenu();			
 	}
 
         @Override
