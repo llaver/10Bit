@@ -51,7 +51,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		event3 = e3;
 	}
 	
-	private void callAll(Graphics window) throws InterruptedException {
+	private void callAll(Graphics window) {
 		if((event1 != null) && (event2 != null) && (event3 != null)) {
 		menu = new MainMenu(event1, event2, event3);
 		menu.paint(window);
@@ -69,13 +69,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
-		try {
 			callAll(window);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
 
         @Override

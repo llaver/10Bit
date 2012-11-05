@@ -50,10 +50,11 @@ public class MainMenu extends MouseInputAdapter  {
 		g.drawString("Y: ", 15, 35);
 		g.drawString(Integer.toString(y), 35, 35);
 		g.setColor(Color.BLACK);
-		g.clearRect(35, 14, 50, 25);
+		g.clearRect(34, 0, 65, 65);
 		if(test) {
 			g.setColor(Color.BLACK);
 			g.clearRect(151, 251, 198, 348);
+			g.clearRect(224, 224, 150, 75);
 			g.setColor(Color.CYAN);
 			g.drawString("It Worked!", 225, 225);
 		} 
