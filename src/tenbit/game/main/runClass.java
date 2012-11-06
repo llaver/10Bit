@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
+import tenbit.game.main.constants.*;
+
 public class RunClass extends JPanel implements KeyListener, Runnable
 {
 	private boolean[] keys;
@@ -42,10 +44,12 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
 	    addMouseMotionListener(hc);
-
+	    
+	    Listeners l = new Listeners();
+	    l.setMouse()
 	}
 	
-	public void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
+	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
 		event1 = e1;
 		event2 = e2;
 		event3 = e3;
@@ -64,6 +68,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
     public void update(Graphics window)
     {
+    	callAll(window);
         paint(window);
     }
 

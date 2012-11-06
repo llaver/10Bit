@@ -44,13 +44,13 @@ public class MainMenu extends MouseInputAdapter  {
 		Graphics g = window;
 		g.setColor(Color.CYAN);
 		g.drawRect(150, 250, 200, 100);
+		g.clearRect(30, 3, 30, 32); 
 		g.drawString("Testing!", 225, 225);
 		g.drawString("X: ", 15, 15);
 		g.drawString(Integer.toString(x), 35, 15);
 		g.drawString("Y: ", 15, 35);
 		g.drawString(Integer.toString(y), 35, 35);
 		g.setColor(Color.BLACK);
-		g.clearRect(34, 0, 65, 65);
 		if(test) {
 			g.setColor(Color.BLACK);
 			g.clearRect(151, 251, 198, 348);
