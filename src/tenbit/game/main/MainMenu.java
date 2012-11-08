@@ -30,12 +30,22 @@ public class MainMenu extends MouseInputAdapter  {
 		x = -1;
 		y = -1;
 	}
+	public MainMenu(MouseEvent cl, MouseEvent dr, MouseEvent mv) {
+		click = cl;
+		drag = dr;
+		move = mv;
+		
+		mouseMoved(move);
+		mouseDragged(drag);
+		mouseClicked(click);
+	}
 	
 	public void paint(Graphics window) {
 		Graphics g = window;
+		g.setColor(Color.BLACK);
+		g.clearRect(30, 3, 30, 32);
 		g.setColor(Color.CYAN);
-		g.drawRect(150, 250, 200, 100);
-		g.clearRect(30, 3, 30, 32); 
+		g.drawRect(150, 250, 200, 100); 
 		g.drawString("Testing!", 225, 225);
 		g.drawString("X: ", 15, 15);
 		g.drawString(Integer.toString(x), 35, 15);

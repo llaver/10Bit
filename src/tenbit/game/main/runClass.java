@@ -15,6 +15,7 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 import tenbit.game.main.constants.*;
+import tenbit.game.main.info.Info;
 
 public class RunClass extends JPanel implements KeyListener, Runnable
 {
@@ -28,24 +29,27 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event3 = null;
 	
 	MainMenu mm = new MainMenu();
+	MainMenu menu;
+	
+	Info info = new Info();
+	Info mousepos;
 	
 
 	public RunClass(JFrame par)
 	{
 		
 		setBackground(Color.BLACK);
-
 		this.addKeyListener(this);
 		new Thread(this).start();
-
 		setVisible(true);
-		
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
 	    addMouseMotionListener(hc);
-	    
+	    System.out.println("Hello World! (:");
 	    Listeners l = new Listeners();
 	    l = new Listeners(event1, event2, event3);
+	    System.out.println("Hello World! list");
+	    
 	}
 	
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
@@ -55,7 +59,15 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	}
 	
 	private void callAll(Graphics window) {
-		mm.paint(window);
+		if((event1 != null) && (event2 != null) && (event3 != null)) {
+		    menu = new MainMenu(event1, event2, event3);
+		    menu.paint(window);
+		    //mousepos = new Info(true, 1);
+		    //mousepos.paint(window);
+		    System.out.println("Hello World! asdasd");
+		    } else {
+		    	mm.paint(window);
+		    }
 		}
 	
 	

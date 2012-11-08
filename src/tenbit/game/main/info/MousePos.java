@@ -31,10 +31,14 @@ public class MousePos extends MouseInputAdapter {
 	
 	public MousePos() {
 		isOn = false;
+		System.out.println("Hello World! 1");
 	}
 	public MousePos(boolean on) {
+		System.out.println("Hello World! 2");
 		isOn = on;
+		System.out.println("Hello World! b4");
 		mouseMoved(move);
+		System.out.println("Hello World! after");
 	} 
 	public void paint(Graphics window) {
 		Graphics g = window;

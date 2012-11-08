@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.lang.System;
 
 
 public class Boot extends JFrame 
@@ -18,16 +19,17 @@ public class Boot extends JFrame
     
     public Boot() 
     {
-        super("Boot");
-
-	setSize(WIDTH, HEIGHT);
-	setBackground(Color.BLACK);
+        super("Boot"); 
+        
+        setSize(WIDTH, HEIGHT);
+        setBackground(Color.BLACK);
         RunClass rc = new RunClass(this);
-	((Component)rc).setFocusable(true);
-
+        ((Component)rc).setFocusable(true);
+        System.out.println("Hello World! (:");
+	
         getContentPane().add( rc );
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setVisible(true);        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);        
     }
     
     public static void main( String args[] )

@@ -18,6 +18,7 @@ import java.awt.Font;
 public class Info {
 	private int choice;
 	private boolean toRun;
+	MousePos mp =  new MousePos();
 	
 	public Info() {
 		choice = 0;
@@ -26,13 +27,18 @@ public class Info {
 	public Info(boolean on, int in) {
 		toRun = on;
 		choice = in;
-		
+		start();
 	}
 	private void start() {
-		
+		switch(choice) {
+			case 1: mp = new MousePos(toRun);
+				break;
+			default: System.out.println("Invalid Info Request");
+				break;
+		}
 	}
-	public void paint() {
-		
+	public void paint(Graphics window) {
+		mp.paint(window);
 	}
 
 }
