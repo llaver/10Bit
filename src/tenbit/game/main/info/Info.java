@@ -31,5 +31,8 @@ public class Info {
 	private void start() {
 		
 	}
+	public void paint() {
+		
+	}
 
 }

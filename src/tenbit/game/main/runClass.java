@@ -23,12 +23,11 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private int x;
 	private int y;
 	
-	private MouseEvent event1;
-	private MouseEvent event2;
-	private MouseEvent event3;
+	private MouseEvent event1 = null;
+	private MouseEvent event2 = null;
+	private MouseEvent event3 = null;
 	
 	MainMenu mm = new MainMenu();
-	MainMenu menu;
 	
 
 	public RunClass(JFrame par)
@@ -46,7 +45,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	    addMouseMotionListener(hc);
 	    
 	    Listeners l = new Listeners();
-	    l.setMouse()
+	    l = new Listeners(event1, event2, event3);
 	}
 	
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
@@ -56,13 +55,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	}
 	
 	private void callAll(Graphics window) {
-		if((event1 != null) && (event2 != null) && (event3 != null)) {
-		menu = new MainMenu(event1, event2, event3);
-		menu.paint(window);
-		} else {			
+		mm.paint(window);
 		}
-			
-	}
 	
 	
 

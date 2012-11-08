@@ -30,16 +30,7 @@ public class MainMenu extends MouseInputAdapter  {
 		x = -1;
 		y = -1;
 	}
-	public MainMenu(MouseEvent cl, MouseEvent dr, MouseEvent mv ) {
-		click = cl;
-		drag = dr;
-		move = mv;
-		
-		mouseMoved(move);
-		mouseClicked(click);
-		mouseDragged(drag);
-		System.out.println(test);
-	}
+	
 	public void paint(Graphics window) {
 		Graphics g = window;
 		g.setColor(Color.CYAN);
