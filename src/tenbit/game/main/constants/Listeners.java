@@ -16,9 +16,9 @@ import java.awt.Component;
 import java.awt.Font;
 
 public class Listeners {
-	public final MouseEvent mMoved;
-	public final MouseEvent mDrag;
-	public final MouseEvent mClick;
+	public static MouseEvent mMoved;
+	public static MouseEvent mDrag;
+	public static MouseEvent mClick;
 	public int x;
 	
 	

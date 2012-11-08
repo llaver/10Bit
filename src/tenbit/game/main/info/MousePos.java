@@ -17,44 +17,43 @@ import java.awt.Font;
 
 import tenbit.game.main.constants.*;
 import tenbit.game.main.window.*;
+import tenbit.game.main.constants.Listeners;
 
 public class MousePos extends MouseInputAdapter {
 	private MouseXY mMove = new MouseXY();
 	private boolean isOn;
 	private int x = -1;
 	private int y = -1;
-	Listeners lis = new Listeners();
-	private MouseEvent move = lis.mMoved;
-	private MouseEvent click = lis.mClick;
-	private MouseEvent drag = lis.mDrag;
+	private MouseEvent move = Listeners.mMoved;
+	private MouseEvent click = Listeners.mClick;
+	private MouseEvent drag = Listeners.mDrag;
 	
 	
 	public MousePos() {
 		isOn = false;
-		System.out.println("Hello World! 1");
 	}
 	public MousePos(boolean on) {
-		System.out.println("Hello World! 2");
 		isOn = on;
-		System.out.println("Hello World! b4");
 		mouseMoved(move);
-		System.out.println("Hello World! after");
 	} 
 	public void paint(Graphics window) {
 		Graphics g = window;
 		g.setColor(Color.CYAN);
-		g.clearRect(30, 3, 30, 32);
+		g.clearRect(30, 3, 30, 15);
+		g.clearRect(80, 3, 30, 15);
 		g.drawString("X: ", 15, 15);
 		g.drawString(Integer.toString(x), 35, 15);
-		g.drawString("Y: ", 15, 35);
-		g.drawString(Integer.toString(y), 35, 35);
-	}
+		g.drawString("Y: ", 65, 15);
+		g.drawString(Integer.toString(y), 85, 15);
+		}
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		if(e != null) {
 		mMove = new MouseXY(e);
 		x = mMove.getX();
 		y = mMove.getY();
-		System.out.println("mouseMoved() in mm");
+		} else {
+		}
 	}
 	
 
