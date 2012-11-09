@@ -60,10 +60,10 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		if((event1 != null) && (event2 != null) && (event3 != null)) {
 			Listeners l = new Listeners();
 		    l = new Listeners(event1, event2, event3);
-		    //menu = new MainMenu(event1, event2, event3);
-		    //menu.paint(window);
-		    mousepos = new Info(true, 1);
+			mousepos = new Info(true, 1);
 		    mousepos.paint(window);
+		    menu = new MainMenu(true);
+		    menu.paint(window);
 		    } else {
 		    	mm.paint(window);
 		    }
@@ -136,7 +136,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		}
 		void updateSize() {
 			if((me1 != null) && (me2 != null) && (me3 != null)) {
-			System.out.println((me1.getClickCount()) + ("  X: " + me2.getX() + "  Y: " + me2.getY()) + ("  X: " + me3.getX() + "  Y: " + me3.getY()) );
+			//System.out.println((me1.getClickCount()) + ("  X: " + me2.getX() + "  Y: " + me2.getY()) + ("  X: " + me3.getX() + "  Y: " + me3.getY()) );
 			setEvent(me1, me2, me3);
 			} else {				
 			}

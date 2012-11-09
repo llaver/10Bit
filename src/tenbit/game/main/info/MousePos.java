@@ -38,13 +38,15 @@ public class MousePos extends MouseInputAdapter {
 	} 
 	public void paint(Graphics window) {
 		Graphics g = window;
-		g.setColor(Color.CYAN);
-		g.clearRect(30, 3, 30, 15);
-		g.clearRect(80, 3, 30, 15);
-		g.drawString("X: ", 15, 15);
-		g.drawString(Integer.toString(x), 35, 15);
-		g.drawString("Y: ", 65, 15);
-		g.drawString(Integer.toString(y), 85, 15);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setBackground(Color.BLACK);
+		g2.clearRect(30, 3, 30, 15);
+		g2.clearRect(80, 3, 30, 15);
+		g2.setColor(Color.CYAN);
+		g2.drawString("X: ", 15, 15);
+		g2.drawString(Integer.toString(x), 35, 15);
+		g2.drawString("Y: ", 65, 15);
+		g2.drawString(Integer.toString(y), 85, 15);
 		}
 	@Override
 	public void mouseMoved(MouseEvent e) {

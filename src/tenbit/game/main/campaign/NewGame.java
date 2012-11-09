@@ -13,17 +13,22 @@ import javax.swing.JPanel;
 import java.awt.Component;
 import java.awt.Font;
 
-public class Campaign{
-	private boolean startNew;
-	private int gameSave;
-	
-	public Campaign() {
+public class NewGame {
+	private String charName;
+	private int charType;
+
+	public NewGame() {
+		charName = "";
+		charType = -1;
 		
 	}
-	public Campaign(boolean newGame) {
-		startNew = newGame;
+	public NewGame(String name, int type) {
+		charName = name;
+		charType = type;
+		createChar();
 	}
-	public Campaign(int loadGame) {
-		gameSave = loadGame;
+	public void createChar() {
+		
 	}
+
 }

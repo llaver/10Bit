@@ -15,89 +15,112 @@ import javax.swing.event.MouseInputListener;
 import java.awt.Component;
 import java.awt.Font;
 
+import tenbit.game.main.constants.Listeners;
 import tenbit.game.main.window.*;
 
 public class MainMenu extends MouseInputAdapter  {
-	private MouseXY mClick = new MouseXY();
+	private MouseXY mClick;
 	private MouseXY mMove = new MouseXY();
 	private int x;
 	private int y;
 	private boolean test = false;
-	private MouseEvent click, drag, move;
+	private MouseEvent move = Listeners.mMoved;
+	private MouseEvent click = Listeners.mClick;
+	private MouseEvent drag = Listeners.mDrag;
+	private String currentMenu;
 	
 	
 	public MainMenu() {
 		x = -1;
 		y = -1;
+		currentMenu = "Loading";
 	}
-	public MainMenu(MouseEvent cl, MouseEvent dr, MouseEvent mv) {
-		click = cl;
-		drag = dr;
-		move = mv;
-		
-		mouseMoved(move);
-		mouseDragged(drag);
-		mouseClicked(click);
+	public MainMenu(boolean start) {
+		currentMenu = "Main Menu";
+		if(move != null && drag != null && click != null) {
+			mouseMoved(move);
+			mouseDragged(drag);
+			mouseClicked(click);
+		} else { }
 	}
-	
 	public void paint(Graphics window) {
 		Graphics g = window;
+		Graphics2D g2 = (Graphics2D) g;
 		if(test) {
-			g.setColor(Color.BLACK);
-			g.clearRect(151, 251, 198, 348);
-			g.clearRect(224, 224, 150, 75);
-			g.setColor(Color.CYAN);
-			g.drawString("It Worked!", 225, 225);
+			g2.setBackground(Color.BLACK);
+			g2.clearRect(151, 251, 198, 348);
+			g2.clearRect(224, 224, 150, 75);
+			g2.setColor(Color.CYAN);
+			g2.drawString("It Worked!", 225, 225);
 		} 
 	}
+	
 	 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		mMove = new MouseXY(e);
-		x = mMove.getX();
-		y = mMove.getY();
+		if(e != null) {
+			mMove = new MouseXY(e);
+			x = mMove.getX();
+			y = mMove.getY();
+		} else { }
 	}
 
 	//TODO Change to the correct coordinates
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		mClick = new MouseXY(e);
-		//Campaign
-		if((mClick.getX() >= 150 && mClick.getX() <= 350) && (mClick.getY() >= 250 && mClick.getY() <= 350)) {
-			/*
-			 * Change the options to Load Game, Save Game, and back
-			 * Check X and Y for options
-			 * if Load Game give saved games and again check for choice
-			 * Start Game by calling Campaign 
-			 */
-			test = true;
-		}
-		//Skirmish
-		if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
-			/*
-			 * Give Skirmish mode options
-			 */
-		}
-		//Settings
-		if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
-			/*
-			 * Call Options 
-			 */
-		}
-		//Exit Game
-		if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
-			/*
-			 * Exit the game 
-			 */
-		}
+		if(e != null) {
+			mClick = new MouseXY(e);
+			while(currentMenu.contains("Main Menu")){
+				//Campaign
+				if((mClick.getX() >= 150 && mClick.getX() <= 350) && (mClick.getY() >= 250 && mClick.getY() <= 350)) {
+					test = true;
+					//currentMenu = "Campaign";
+				}
+				//Skirmish
+				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
+					currentMenu = "Skirmish";
+				}
+				//Settings
+				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
+					currentMenu = "Options";
+				}
+				//Exit Game
+				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
+					System.exit(1);
+				}
+			} while(currentMenu.contentEquals("Campaign")) {
+				campaignMenu();
+			} while(currentMenu.contentEquals("Skirmish")) {
+				skirmishMenu();
+			} while(currentMenu.contentEquals("Options")) {
+				optionsMenu();
+			} while(currentMenu.contentEquals("Exit")) {
+				exitMenu();
+			} while(currentMenu.contentEquals("Loading")) {
+			} while(currentMenu.contentEquals(null)) {
+			}
+		} else { }
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(e != null) {
+			
+		} else { }
+	}
+	public void campaignMenu() {
 		
 	}
-
-
-
+	public void skirmishMenu() {
+		
+	}
+	public void optionsMenu() {
+		
+	}
+	public void exitMenu() {
+		
+	}
+	public void exitGame() {
+		System.exit(1);
+	}
 }

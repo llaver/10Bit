@@ -1,4 +1,4 @@
-package tenbit.game.main.campaign;
+package tenbit.game.main.constants;
 
 import java.lang.Object.*;
 import java.awt.Color;
@@ -13,17 +13,12 @@ import javax.swing.JPanel;
 import java.awt.Component;
 import java.awt.Font;
 
-public class Campaign{
-	private boolean startNew;
-	private int gameSave;
-	
-	public Campaign() {
+public class Saves {
+
+	public Saves() {
 		
 	}
-	public Campaign(boolean newGame) {
-		startNew = newGame;
-	}
-	public Campaign(int loadGame) {
-		gameSave = loadGame;
-	}
+	
+	
+
 }

@@ -35,8 +35,7 @@ public class Player implements Character {
 
 	@Override
 	public void move() {
-		int x = 0;
-		x = x + 2;
+		
 	}
 
 	@Override
