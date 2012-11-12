@@ -24,6 +24,7 @@ public class MainMenu extends MouseInputAdapter  {
 	private int x;
 	private int y;
 	private boolean test = false;
+	private boolean run = false;
 	private MouseEvent move = Listeners.mMoved;
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
@@ -37,6 +38,7 @@ public class MainMenu extends MouseInputAdapter  {
 	}
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
+		run = start;
 		if(move != null && drag != null && click != null) {
 			mouseMoved(move);
 			mouseDragged(drag);
@@ -46,6 +48,7 @@ public class MainMenu extends MouseInputAdapter  {
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
+		g2.drawRect(160, 120, 460, 50);
 		if(test) {
 			g2.setBackground(Color.BLACK);
 			g2.clearRect(151, 251, 198, 348);
@@ -70,7 +73,7 @@ public class MainMenu extends MouseInputAdapter  {
 	public void mouseClicked(MouseEvent e) {
 		if(e != null) {
 			mClick = new MouseXY(e);
-			while(currentMenu.contains("Main Menu")){
+			if(currentMenu.contains("Main Menu")){
 				//Campaign
 				if((mClick.getX() >= 150 && mClick.getX() <= 350) && (mClick.getY() >= 250 && mClick.getY() <= 350)) {
 					test = true;
@@ -88,16 +91,16 @@ public class MainMenu extends MouseInputAdapter  {
 				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
 					System.exit(1);
 				}
-			} while(currentMenu.contentEquals("Campaign")) {
+			} else if(currentMenu.contentEquals("Campaign")) {
 				campaignMenu();
-			} while(currentMenu.contentEquals("Skirmish")) {
+			} else if(currentMenu.contentEquals("Skirmish")) {
 				skirmishMenu();
-			} while(currentMenu.contentEquals("Options")) {
+			} else if(currentMenu.contentEquals("Options")) {
 				optionsMenu();
-			} while(currentMenu.contentEquals("Exit")) {
+			} else if(currentMenu.contentEquals("Exit")) {
 				exitMenu();
-			} while(currentMenu.contentEquals("Loading")) {
-			} while(currentMenu.contentEquals(null)) {
+			} else if(currentMenu.contentEquals("Loading")) {
+			} else if(currentMenu.contentEquals(null)) {
 			}
 		} else { }
 	}
