@@ -73,6 +73,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
     public void update(Graphics window)
     {
+    	mm.paint(window);
     	callAll(window);
         paint(window);
     }
@@ -99,17 +100,14 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     private class HandlerClass extends MouseInputAdapter {
     	private MouseEvent me1;
