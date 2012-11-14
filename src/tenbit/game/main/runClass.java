@@ -5,10 +5,18 @@
 package tenbit.game.main;
 
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
@@ -34,6 +42,17 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	Info info = new Info();
 	Info mousepos;
 	
+	boolean initialPaint = false;
+	private final File sprites = new File("H:\\BPA\\Project\\10bit\\Sprites\\JPG or PNG\\");
+	private final File background = new File(sprites, "Menu Background.jpg");
+	private final File menuBlack = new File(sprites, "Logo (black).png");
+	private final File menuWhite = new File(sprites, "Logo (white).png");
+	private BufferedImage backImg;
+	private BufferedImage logoBlack;
+	private BufferedImage logoWhite;
+	
+	
+	
 
 	public RunClass(JFrame par)
 	{
@@ -47,6 +66,12 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	    addMouseMotionListener(hc);
 	    //if((event1 != null) && (event2 != null) && (event3 != null)) {
 	    //}
+	    try {
+	    	backImg = ImageIO.read(background);
+	    	logoBlack = ImageIO.read(menuBlack);
+	    	logoWhite = ImageIO.read(menuWhite);
+		} catch (IOException e) { e.printStackTrace();
+		}
 	    
 	}
 	
@@ -57,6 +82,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	}
 	
 	private void callAll(Graphics window) {
+		
+		
 		if((event1 != null) && (event2 != null) && (event3 != null)) {
 			Listeners l = new Listeners();
 		    l = new Listeners(event1, event2, event3);
@@ -80,6 +107,15 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
+		final Graphics2D g2d = (Graphics2D) window;
+		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        if(!initialPaint) {
+		
+        }
+		g2d.drawImage(backImg, 0, 0, null);
+		//g2d.drawImage(logoBlack, 0, 0, null);
+		//g2d.drawImage(logoWhite, 0, 0, null);
 			callAll(window);
 	}
 

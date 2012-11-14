@@ -48,7 +48,7 @@ public class MainMenu extends MouseInputAdapter  {
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawRect(160, 120, 460, 50);
+		//g2.drawRect(160, 120, 460, 50);
 		if(test) {
 			g2.setBackground(Color.BLACK);
 			g2.clearRect(151, 251, 198, 348);
