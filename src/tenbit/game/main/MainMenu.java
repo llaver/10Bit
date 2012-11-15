@@ -1,13 +1,18 @@
 package tenbit.game.main;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.Object.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.awt.Point;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
@@ -30,11 +35,31 @@ public class MainMenu extends MouseInputAdapter  {
 	private MouseEvent drag = Listeners.mDrag;
 	private String currentMenu;
 	
+	private final File sprites = new File("10bit/Sprites/JPG or PNG/");
+	private final File background = new File(sprites, "Menu Background.jpg");
+	private final File menuBlack = new File(sprites, "Logo (black).png");
+	private final File menuWhite = new File(sprites, "Logo (white).png");
+	private final File menuOnHover = new File(sprites, "Textbox - On Hover.jpg");
+	private final File menuNoHover = new File(sprites, "Textbox - No Hover.jpg");
+	private final File menuHeld = new File(sprites, "Textbox - Mouse Held.jpg");
+	private BufferedImage backImg;
+	private BufferedImage logoBlack;
+	private BufferedImage logoWhite;
+	private BufferedImage textOnHover;
+	private BufferedImage textNoHover;
+	private BufferedImage textHeld;
+	
 	
 	public MainMenu() {
 		x = -1;
 		y = -1;
 		currentMenu = "Loading";
+		try {
+	    	backImg = ImageIO.read(background);
+	    	logoBlack = ImageIO.read(menuBlack);
+	    	logoWhite = ImageIO.read(menuWhite);
+		} catch (IOException e) { e.printStackTrace();
+		}
 	}
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
@@ -48,6 +73,9 @@ public class MainMenu extends MouseInputAdapter  {
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(backImg, 0, 0, null);
+		g2.drawImage(logoBlack, 200, 75, null);
+		g2.drawImage(logoWhite, 200, 50, null);
 		//g2.drawRect(160, 120, 460, 50);
 		if(test) {
 			g2.setBackground(Color.BLACK);

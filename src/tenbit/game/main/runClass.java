@@ -37,22 +37,10 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event3;
 	
 	MainMenu mm = new MainMenu();
-	MainMenu menu;
+	MainMenu menu = new MainMenu();
 	
 	Info info = new Info();
 	Info mousepos;
-	
-	boolean initialPaint = false;
-	private final File sprites = new File("H:\\BPA\\Project\\10bit\\Sprites\\JPG or PNG\\");
-	private final File background = new File(sprites, "Menu Background.jpg");
-	private final File menuBlack = new File(sprites, "Logo (black).png");
-	private final File menuWhite = new File(sprites, "Logo (white).png");
-	private BufferedImage backImg;
-	private BufferedImage logoBlack;
-	private BufferedImage logoWhite;
-	
-	
-	
 
 	public RunClass(JFrame par)
 	{
@@ -65,14 +53,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		addMouseListener(hc);
 	    addMouseMotionListener(hc);
 	    //if((event1 != null) && (event2 != null) && (event3 != null)) {
-	    //}
-	    try {
-	    	backImg = ImageIO.read(background);
-	    	logoBlack = ImageIO.read(menuBlack);
-	    	logoWhite = ImageIO.read(menuWhite);
-		} catch (IOException e) { e.printStackTrace();
-		}
-	    
+	    //}	    
 	}
 	
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
@@ -110,13 +91,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		final Graphics2D g2d = (Graphics2D) window;
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        if(!initialPaint) {
-		
-        }
-		g2d.drawImage(backImg, 0, 0, null);
-		//g2d.drawImage(logoBlack, 0, 0, null);
-		//g2d.drawImage(logoWhite, 0, 0, null);
-			callAll(window);
+        callAll(window);
 	}
 
         @Override
