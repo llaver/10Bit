@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
+import java.awt.Toolkit;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -73,17 +74,16 @@ public class MainMenu extends MouseInputAdapter  {
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(backImg, 0, 0, null);
-		g2.drawImage(logoBlack, 200, 75, null);
-		g2.drawImage(logoWhite, 200, 50, null);
-		//g2.drawRect(160, 120, 460, 50);
 		if(test) {
-			g2.setBackground(Color.BLACK);
 			g2.clearRect(151, 251, 198, 348);
 			g2.clearRect(224, 224, 150, 75);
 			g2.setColor(Color.CYAN);
 			g2.drawString("It Worked!", 225, 225);
 		} 
+		g2.drawImage(backImg, 0, 0, null);
+		g2.drawImage(logoBlack, 200, 75, null);
+		g2.drawImage(logoWhite, 200, 50, null);
+		//g2.drawRect(160, 120, 460, 50);
 	}
 	
 	 

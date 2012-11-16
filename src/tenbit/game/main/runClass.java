@@ -11,7 +11,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.Toolkit;
 import java.awt.event.*;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +48,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	public RunClass(JFrame par)
 	{
 		
-		setBackground(Color.BLACK);
+		setBackground(Toolkit.getDefaultToolkit().createImage("10bit/Sprites/JPG or PNG/Menu Background.jpg"));
+		setBackground(Color.blue);
 		this.addKeyListener(this);
 		new Thread(this).start();
 		setVisible(true);
@@ -56,6 +60,11 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	    //}	    
 	}
 	
+	private void setBackground(Image createImage) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
 		event1 = e1;
 		event2 = e2;
@@ -81,19 +90,19 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
     public void update(Graphics window)
     {
-    	mm.paint(window);
+    	paint(window);
+    	//paintBackground((Graphics2D) window);
     	callAll(window);
-        paint(window);
+    	mm.paint(window);
     }
 
 	public void paint( Graphics window )
 	{
+		callAll(window);
 		final Graphics2D g2d = (Graphics2D) window;
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        callAll(window);
 	}
-
         @Override
         public void run()
         {
