@@ -21,7 +21,8 @@ import javax.swing.event.MouseInputListener;
 import java.awt.Component;
 import java.awt.Font;
 
-import tenbit.game.main.constants.Listeners;
+import tenbit.game.main.constants.*;
+import tenbit.game.main.info.Info;
 import tenbit.game.main.window.*;
 
 public class MainMenu extends MouseInputAdapter  {
@@ -36,31 +37,25 @@ public class MainMenu extends MouseInputAdapter  {
 	private MouseEvent drag = Listeners.mDrag;
 	private String currentMenu;
 	
-	private final File sprites = new File("10bit/Sprites/JPG or PNG/");
-	private final File background = new File(sprites, "Menu Background.jpg");
-	private final File menuBlack = new File(sprites, "Logo (black).png");
-	private final File menuWhite = new File(sprites, "Logo (white).png");
-	private final File menuOnHover = new File(sprites, "Textbox - On Hover.jpg");
-	private final File menuNoHover = new File(sprites, "Textbox - No Hover.jpg");
-	private final File menuHeld = new File(sprites, "Textbox - Mouse Held.jpg");
-	private BufferedImage backImg;
-	private BufferedImage logoBlack;
-	private BufferedImage logoWhite;
-	private BufferedImage textOnHover;
-	private BufferedImage textNoHover;
-	private BufferedImage textHeld;
+	Info info = new Info();
+	Info mousepos;
 	
+	private BufferedImage backGround = MenuImages.backImg;
+	private BufferedImage blackLogo = MenuImages.logoBlack;
+	private BufferedImage whiteLogo = MenuImages.logoWhite;
+	private BufferedImage heldButton = MenuImages.textHeld;
+	private BufferedImage hoverButton = MenuImages.textOnHover;
+	private BufferedImage noHoverButton = MenuImages.textNoHover;
 	
 	public MainMenu() {
 		x = -1;
 		y = -1;
 		currentMenu = "Loading";
 		try {
-	    	backImg = ImageIO.read(background);
-	    	logoBlack = ImageIO.read(menuBlack);
-	    	logoWhite = ImageIO.read(menuWhite);
-		} catch (IOException e) { e.printStackTrace();
+			MenuImages mi = new MenuImages();
+		} catch (IOException e) {
 		}
+		
 	}
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
@@ -74,15 +69,20 @@ public class MainMenu extends MouseInputAdapter  {
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
+		//g2.drawImage(backGround, 0, 0, null);
+		//g2.drawImage(blackLogo, 200, 75, null);
+		//g2.drawImage(whiteLogo, 200, 50, null);
 		if(test) {
 			g2.clearRect(151, 251, 198, 348);
 			g2.clearRect(224, 224, 150, 75);
+			g2.drawImage(MenuImages.backImg, 0, 0, null);
+	    	g2.drawImage(MenuImages.logoBlack, 200, 75, null);
+			g2.drawImage(MenuImages.logoWhite, 200, 50, null);
 			g2.setColor(Color.CYAN);
 			g2.drawString("It Worked!", 225, 225);
 		} 
-		g2.drawImage(backImg, 0, 0, null);
-		g2.drawImage(logoBlack, 200, 75, null);
-		g2.drawImage(logoWhite, 200, 50, null);
+		mousepos = new Info(true, 1);
+	    mousepos.paint(window);
 		//g2.drawRect(160, 120, 460, 50);
 	}
 	

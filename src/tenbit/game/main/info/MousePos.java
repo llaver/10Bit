@@ -47,12 +47,14 @@ public class MousePos extends MouseInputAdapter {
 		g2.setBackground(Color.BLACK);
 		g2.clearRect(30, 3, 30, 15);
 		g2.clearRect(80, 3, 30, 15);
+		g2.drawImage(MenuImages.backImg, 0, 0, null);
+    	g2.drawImage(MenuImages.logoBlack, 200, 75, null);
+		g2.drawImage(MenuImages.logoWhite, 200, 50, null);
 		g2.setColor(Color.CYAN);
 		g2.drawString("X: ", 15, 15);
 		g2.drawString(Integer.toString(x), 35, 15);
 		g2.drawString("Y: ", 65, 15);
 		g2.drawString(Integer.toString(y), 85, 15);
-		//Cursor cursor = getToolkit().createCustomCursor(cursorImg, hotspot, "cursorname");
 		}
 	@Override
 	public void mouseMoved(MouseEvent e) {

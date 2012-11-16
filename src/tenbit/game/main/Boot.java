@@ -29,7 +29,6 @@ public class Boot extends JFrame
         super("Boot"); 
         
         setSize(WIDTH, HEIGHT);
-        setBackground(Color.BLUE);
         RunClass rc = new RunClass(this);
         ((Component)rc).setFocusable(true);
         System.out.println("Hello World! (:");

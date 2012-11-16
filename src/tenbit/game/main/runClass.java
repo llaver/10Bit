@@ -41,15 +41,10 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	
 	MainMenu mm = new MainMenu();
 	MainMenu menu = new MainMenu();
-	
-	Info info = new Info();
-	Info mousepos;
 
 	public RunClass(JFrame par)
 	{
 		
-		setBackground(Toolkit.getDefaultToolkit().createImage("10bit/Sprites/JPG or PNG/Menu Background.jpg"));
-		setBackground(Color.blue);
 		this.addKeyListener(this);
 		new Thread(this).start();
 		setVisible(true);
@@ -59,11 +54,6 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	    //if((event1 != null) && (event2 != null) && (event3 != null)) {
 	    //}	    
 	}
-	
-	private void setBackground(Image createImage) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
 		event1 = e1;
@@ -72,36 +62,38 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	}
 	
 	private void callAll(Graphics window) {
-		
-		
-		if((event1 != null) && (event2 != null) && (event3 != null)) {
-			Listeners l = new Listeners();
-		    l = new Listeners(event1, event2, event3);
-			mousepos = new Info(true, 1);
-		    mousepos.paint(window);
-		    menu = new MainMenu(true);
-		    menu.paint(window);
-		    } else {
-		    	mm.paint(window);
-		    }
-		}
+	}
 	
 	
 
-    public void update(Graphics window)
+    public void repaint(Graphics window)
     {
-    	paint(window);
-    	//paintBackground((Graphics2D) window);
-    	callAll(window);
+    	Graphics2D g2d = (Graphics2D) window;
+    	g2d.drawImage(MenuImages.backImg, x, y, null);
+    	g2d.drawImage(MenuImages.logoBlack, 200, 75, null);
+		g2d.drawImage(MenuImages.logoWhite, 200, 50, null);
+		paint(window);
+		//callAll(window);
     	mm.paint(window);
     }
 
 	public void paint( Graphics window )
 	{
-		callAll(window);
+		//callAll(window);
 		final Graphics2D g2d = (Graphics2D) window;
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.drawImage(MenuImages.backImg, x, y, null);
+    	g2d.drawImage(MenuImages.logoBlack, 200, 75, null);
+		g2d.drawImage(MenuImages.logoWhite, 200, 50, null);
+        if((event1 != null) && (event2 != null) && (event3 != null)) {
+			Listeners l = new Listeners();
+		    l = new Listeners(event1, event2, event3);
+		    menu = new MainMenu(true);
+		    menu.paint(window);
+		    } else {
+		    	mm.paint(window);
+		    }
 	}
         @Override
         public void run()
