@@ -43,15 +43,12 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 
 	public RunClass(JFrame par)
 	{
-		
 		this.addKeyListener(this);
 		new Thread(this).start();
 		setVisible(true);
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
-	    addMouseMotionListener(hc);
-	    //if((event1 != null) && (event2 != null) && (event3 != null)) {
-	    //}	    
+	    addMouseMotionListener(hc);  
 	}
 
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
@@ -61,20 +58,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	}
 	
 	private void callAll(Graphics window) {
+	
 	}
 	
-	
-
-    public void repaint(Graphics window)
-    {
-    	Graphics2D g2d = (Graphics2D) window;
-    	g2d.drawImage(MenuImages.backImg, x, y, null);
-    	g2d.drawImage(MenuImages.logoBlack, 200, 75, null);
-		g2d.drawImage(MenuImages.logoWhite, 200, 50, null);
-		paint(window);
-		menu.paint(window);
-    }
-
 	public void paint( Graphics window )
 	{
 		final Graphics2D g2d = (Graphics2D) window;
@@ -97,7 +83,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
             {
    		while(true)
    		{
-                    Thread.currentThread().sleep(5);
+                    Thread.currentThread().sleep(1);
                     repaint();
                 }
          
