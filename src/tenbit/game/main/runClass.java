@@ -39,7 +39,6 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event2;
 	private MouseEvent event3;
 	
-	MainMenu mm = new MainMenu();
 	MainMenu menu = new MainMenu();
 
 	public RunClass(JFrame par)
@@ -73,27 +72,23 @@ public class RunClass extends JPanel implements KeyListener, Runnable
     	g2d.drawImage(MenuImages.logoBlack, 200, 75, null);
 		g2d.drawImage(MenuImages.logoWhite, 200, 50, null);
 		paint(window);
-		//callAll(window);
-    	mm.paint(window);
+		menu.paint(window);
     }
 
 	public void paint( Graphics window )
 	{
-		//callAll(window);
 		final Graphics2D g2d = (Graphics2D) window;
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(MenuImages.backImg, x, y, null);
     	g2d.drawImage(MenuImages.logoBlack, 200, 75, null);
 		g2d.drawImage(MenuImages.logoWhite, 200, 50, null);
-        if((event1 != null) && (event2 != null) && (event3 != null)) {
-			Listeners l = new Listeners();
-		    l = new Listeners(event1, event2, event3);
-		    menu = new MainMenu(true);
-		    menu.paint(window);
-		    } else {
-		    	mm.paint(window);
-		    }
+		
+		Listeners l = new Listeners();
+	    l = new Listeners(event1, event2, event3);
+	    menu = new MainMenu(true);
+	    menu.paint(window);
+		    
 	}
         @Override
         public void run()
@@ -145,11 +140,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 			
 		}
 		void updateSize() {
-			if((me1 != null) && (me2 != null) && (me3 != null)) {
-			//System.out.println((me1.getClickCount()) + ("  X: " + me2.getX() + "  Y: " + me2.getY()) + ("  X: " + me3.getX() + "  Y: " + me3.getY()) );
 			setEvent(me1, me2, me3);
-			} else {				
-			}
 		}
     }
 }

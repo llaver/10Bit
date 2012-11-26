@@ -60,11 +60,10 @@ public class MainMenu extends MouseInputAdapter  {
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
 		run = start;
-		if(move != null && drag != null && click != null) {
-			mouseMoved(move);
-			mouseDragged(drag);
-			mouseClicked(click);
-		} else { }
+		mouseMoved(move);
+		mouseDragged(drag);
+		mouseClicked(click);
+		
 	}
 	public void paint(Graphics window) {
 		Graphics g = window;
