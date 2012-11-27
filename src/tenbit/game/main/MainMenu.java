@@ -28,6 +28,8 @@ import tenbit.game.main.window.*;
 public class MainMenu extends MouseInputAdapter  {
 	private MouseXY mClick;
 	private MouseXY mMove = new MouseXY();
+	private int width = RunClass.jWidth;
+	private int height = RunClass.jHeight;
 	private int x;
 	private int y;
 	private boolean test = false;
@@ -50,12 +52,11 @@ public class MainMenu extends MouseInputAdapter  {
 	public MainMenu() {
 		x = -1;
 		y = -1;
-		currentMenu = "Loading";
+		currentMenu = "Loading";	
 		try {
 			MenuImages mi = new MenuImages();
-		} catch (IOException e) {
-		}
-		
+			} catch (IOException e) {
+			}
 	}
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
@@ -63,20 +64,21 @@ public class MainMenu extends MouseInputAdapter  {
 		mouseMoved(move);
 		mouseDragged(drag);
 		mouseClicked(click);
+		currentMenu = "Loading";
+		System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
 		
 	}
 	public void paint(Graphics window) {
+		width = RunClass.jWidth;
+		height = RunClass.jHeight;
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		//g2.drawImage(backGround, 0, 0, null);
-		//g2.drawImage(blackLogo, 200, 75, null);
-		//g2.drawImage(whiteLogo, 200, 50, null);
+		g2.drawImage(backGround, 0, 0, 800, 600, 0, 0, 1200, 900, null);
+    	g2.drawImage(MenuImages.logoBlack, (width / 4), (height / 8), null);
+		g2.drawImage(MenuImages.logoWhite, (width / 4), (height / 12), null);
 		if(test) {
 			g2.clearRect(151, 251, 198, 348);
 			g2.clearRect(224, 224, 150, 75);
-			g2.drawImage(MenuImages.backImg, 0, 0, null);
-	    	g2.drawImage(MenuImages.logoBlack, 200, 75, null);
-			g2.drawImage(MenuImages.logoWhite, 200, 50, null);
 			g2.setColor(Color.CYAN);
 			g2.drawString("It Worked!", 225, 225);
 		} 
