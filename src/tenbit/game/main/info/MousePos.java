@@ -44,7 +44,6 @@ public class MousePos extends MouseInputAdapter {
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setBackground(Color.BLACK);
 		g2.clearRect(30, 3, 30, 15);
 		g2.clearRect(80, 3, 30, 15);
 		g2.drawImage(MenuImages.backImg, 0, 0, null);

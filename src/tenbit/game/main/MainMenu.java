@@ -53,10 +53,7 @@ public class MainMenu extends MouseInputAdapter  {
 		x = -1;
 		y = -1;
 		currentMenu = "Loading";	
-		try {
-			MenuImages mi = new MenuImages();
-			} catch (IOException e) {
-			}
+		
 	}
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
@@ -65,7 +62,7 @@ public class MainMenu extends MouseInputAdapter  {
 		mouseDragged(drag);
 		mouseClicked(click);
 		currentMenu = "Loading";
-		System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
+		//System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
 		
 	}
 	public void paint(Graphics window) {
@@ -73,9 +70,9 @@ public class MainMenu extends MouseInputAdapter  {
 		height = RunClass.jHeight;
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(backGround, 0, 0, 800, 600, 0, 0, 1200, 900, null);
-    	g2.drawImage(MenuImages.logoBlack, (width / 4), (height / 8), null);
-		g2.drawImage(MenuImages.logoWhite, (width / 4), (height / 12), null);
+		g2.drawImage(backGround, 0, 0, width, height, 0, 0, backGround.getWidth(), backGround.getHeight(), null);
+    	//g2.drawImage(MenuImages.logoBlack, (width / 4), (height / 8), null);
+		//g2.drawImage(MenuImages.logoWhite, (width / 4), (height / 12), null);
 		if(test) {
 			g2.clearRect(151, 251, 198, 348);
 			g2.clearRect(224, 224, 150, 75);
