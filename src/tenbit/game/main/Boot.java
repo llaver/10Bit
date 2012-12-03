@@ -36,7 +36,7 @@ public class Boot extends JFrame
         
         getContentPane().add( rc );
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setResizable(false);
+        setResizable(false);
         setVisible(true);        
     }
     
