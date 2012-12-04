@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 import java.awt.Point;
 
 import javax.imageio.ImageIO;
@@ -39,6 +41,8 @@ public class MainMenu extends MouseInputAdapter  {
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
 	private String currentMenu;
+	
+	private Map<File, Set<File>> titledButtons = MenuImages.allTitleButtons;
 	
 	Info info = new Info();
 	Info mousepos;

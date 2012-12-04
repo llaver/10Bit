@@ -21,7 +21,7 @@ public final class MenuImages {
 	public final File menuHeld = new File(sprites, "Main Menu/Untitled Textboxes/Textbox - Mouse Held.jpg");
 	
 	public File[] titledButtonsDirectories;
-	Map<File, Set<File>> allTitleButtons = new HashMap<File, Set<File>>();
+	public static Map<File, Set<File>> allTitleButtons = new HashMap<File, Set<File>>();
 	
 	public static BufferedImage backImg;
 	public static BufferedImage logoBlack;
@@ -47,7 +47,6 @@ public final class MenuImages {
 				
 			}
 			allTitleButtons.put(titledButtonsDirectories[i], titledButtons);
-			
 		}
 	    	backImg = ImageIO.read(background);
 	    	logoBlack = ImageIO.read(menuBlack);
