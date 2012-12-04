@@ -59,12 +59,11 @@ public class MainMenu extends MouseInputAdapter  {
 	public MainMenu(boolean start) {
 		currentMenu = "Main Menu";
 		run = start;
-		mouseMoved(move);
-		mouseDragged(drag);
-		mouseClicked(click);
 		currentMenu = "Loading";
+			mouseMoved(move);
+			mouseDragged(drag);			
+			mouseClicked(click);
 		//System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
-		
 	}
 	public void paint(Graphics window) {
 		width = RunClass.jWidth;
@@ -74,19 +73,25 @@ public class MainMenu extends MouseInputAdapter  {
 		g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
 		mousepos = new Info(true, 1);
 	    mousepos.paint(window);
+	    paintButtons(g2);
     	g2.drawImage(MenuImages.logoBlack, (width / 4), (height / 8), null);
 		g2.drawImage(MenuImages.logoWhite, (width / 4), (height / 12), null);
 		g2.drawImage(MenuImages.textNoHover, 245, 250, null);
 	}
 	
+	private void paintButtons(Graphics2D g2d) {
+		int mapSize = titledButtons.size();
+		for(int i = 0; i < mapSize; i++) {
+		}
+	}
 	 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if(e != null) {
-			mMove = new MouseXY(e);
-			x = mMove.getX();
-			y = mMove.getY();
-		} else { }
+		mMove = new MouseXY(e);
+		x = mMove.getX();
+		y = mMove.getY();
+		}		
 	}
 
 	//TODO Change to the correct coordinates
@@ -99,7 +104,7 @@ public class MainMenu extends MouseInputAdapter  {
 				if((mClick.getX() >= 150 && mClick.getX() <= 350) && (mClick.getY() >= 250 && mClick.getY() <= 350)) {
 					test = true;
 					//currentMenu = "Campaign";
-				}
+				} 
 				//Skirmish
 				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
 					currentMenu = "Skirmish";
@@ -123,11 +128,16 @@ public class MainMenu extends MouseInputAdapter  {
 			} else if(currentMenu.contentEquals("Loading")) {
 			} else if(currentMenu.contentEquals(null)) {
 			}
-		} else { }
+		}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		if(e != null) {
+			mMove = new MouseXY(e);
+			x = mMove.getX();
+			y = mMove.getY();
+		}
 	}
 	public void campaignMenu() {
 		

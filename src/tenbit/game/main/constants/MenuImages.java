@@ -11,7 +11,6 @@ public final class MenuImages {
 	
 	public final File sprites = new File("10bit/src/tenbit/Sprites/JPG or PNG/");	
 	public final File buttons = new File("10bit/src/tenbit/Sprites/JPG or PNG/Main Menu/Titled Buttons/");	
-	public final File dir = new File("");	
 	
 	private final File background = new File(sprites, "Main Menu/Menu Background.jpg");
 	public final File menuBlack = new File(sprites, "Logo (black).png");

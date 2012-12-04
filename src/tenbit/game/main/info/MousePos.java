@@ -82,4 +82,18 @@ public class MousePos extends MouseInputAdapter {
 		} else {
 		}
 	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(e != null) {
+		mMove = new MouseXY(e);
+		x = mMove.getX();
+		y = mMove.getY();
+		if(!firstPos) {
+			oX = x;
+			oY = y;
+			firstPos = true;
+		}
+		} else {
+		}
+	}
 }
