@@ -32,6 +32,7 @@ public class MousePos extends MouseInputAdapter {
 	private MouseEvent move = Listeners.mMoved;
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
+	private MouseEvent release = Listeners.mReleased;
 	
 	
 	public MousePos() {

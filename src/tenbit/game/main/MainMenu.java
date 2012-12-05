@@ -42,6 +42,17 @@ public class MainMenu extends MouseInputAdapter  {
 	private MouseEvent drag = Listeners.mDrag;
 	private String currentMenu;
 	
+	//Leaderboard
+	private File[] lbButtons = new File[4];
+	//Load Game
+	private File[] lgButtons = new File[4];
+	//New Game
+	private File[] ngButtons = new File[4];
+	//Options
+	private File[] opButtons = new File[4];
+	//Quit Game
+	private File[] qgButtons = new File[4];
+	
 	private Map<File, Set<File>> titledButtons = MenuImages.allTitleButtons;
 	
 	Info info = new Info();
@@ -60,9 +71,10 @@ public class MainMenu extends MouseInputAdapter  {
 		currentMenu = "Main Menu";
 		run = start;
 		currentMenu = "Loading";
-			mouseMoved(move);
-			mouseDragged(drag);			
-			mouseClicked(click);
+		mouseMoved(move);
+		mouseDragged(drag);			
+		mouseClicked(click);
+		checkButtons();
 		//System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
 	}
 	public void paint(Graphics window) {
@@ -79,10 +91,31 @@ public class MainMenu extends MouseInputAdapter  {
 		g2.drawImage(MenuImages.textNoHover, 245, 250, null);
 	}
 	
-	private void paintButtons(Graphics2D g2d) {
-		int mapSize = titledButtons.size();
+	private void checkButtons() {
+		int mapSize = titledButtons.size();		
 		for(int i = 0; i < mapSize; i++) {
+			File dir = titledButtons.keySet().iterator().next();
+			for(int j = 0; j < titledButtons.get(dir).size(); j++) {
+				if(dir.getName().contains("Leaderboard") && titledButtons.get(dir).iterator().hasNext()) {
+					lbButtons[j] = titledButtons.get(dir).iterator().next();
+				}
+				if(dir.getName().contains("Load Game") && titledButtons.get(dir).iterator().hasNext()) {
+					lgButtons[j] = titledButtons.get(dir).iterator().next();
+				}
+				if(dir.getName().contains("New Game") && titledButtons.get(dir).iterator().hasNext()) {
+					ngButtons[j] = titledButtons.get(dir).iterator().next();
+				}
+				if(dir.getName().contains("Options") && titledButtons.get(dir).iterator().hasNext()) {
+					opButtons[j] = titledButtons.get(dir).iterator().next();
+				}
+				if(dir.getName().contains("Quit Game") && titledButtons.get(dir).iterator().hasNext()) {
+					qgButtons[j] = titledButtons.get(dir).iterator().next();
+				}
+			}			
 		}
+	}
+	private void paintButtons(Graphics2D g2d) {
+		
 	}
 	 
 	@Override

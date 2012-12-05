@@ -35,6 +35,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event1;
 	private MouseEvent event2;
 	private MouseEvent event3;
+	private MouseEvent event4;
 	
 	public static int jWidth;
 	public static int jHeight;
@@ -53,10 +54,11 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	    addMouseMotionListener(hc); 
 	}
 
-	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3) {
+	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3, MouseEvent e4) {
 		event1 = e1;
 		event2 = e2;
 		event3 = e3;
+		event4 = e4;
 	}
 	
 	public void paint( Graphics window )
@@ -69,7 +71,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
 		
 		Listeners l = new Listeners();
-	    l = new Listeners(event1, event2, event3);
+	    l = new Listeners(event1, event2, event3, event4);
 	    menu.paint(window);
 	    menu = new MainMenu(true);
 	    menu.paint(window);
@@ -104,6 +106,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
     	private MouseEvent me1;
     	private MouseEvent me2;
     	private MouseEvent me3;
+    	private MouseEvent me4;
 
 		@Override
 		public void mouseClicked(MouseEvent e1) {
@@ -122,8 +125,13 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 			me3 = e3;
 			updateSize();
 		}
+		@Override
+		public void mouseReleased(MouseEvent e4) {
+			me4 = e4;
+			updateSize();
+		}
 		void updateSize() {
-			setEvent(me1, me2, me3);
+			setEvent(me1, me2, me3, me4);
 		}
     }
 }
