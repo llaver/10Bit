@@ -23,10 +23,11 @@ import tenbit.game.main.constants.Listeners;
 
 public class MousePos extends MouseInputAdapter {
 	private MouseXY mMove = new MouseXY();
+	private MouseXY mDrag = new MouseXY();
 	private boolean isOn;
 	private boolean firstPos = false; //for when the old position is first set to the new position
-	private int x = -1;
-	private int y = -1;
+	public static int x = -1;
+	public static int y = -1;
 	private int oX = -1; //Old Cursor x coordinate for painting cursor
 	private int oY = -1; //Old Cursor x coordinate for painting cursor
 	private MouseEvent move = Listeners.mMoved;
@@ -40,8 +41,8 @@ public class MousePos extends MouseInputAdapter {
 	}
 	public MousePos(boolean on) {
 		isOn = on;
-		mouseMoved(move);
 		mouseDragged(drag);
+		mouseMoved(move);
 	} 
 	public void paint(Graphics window) {
 		Graphics g = window;
@@ -58,15 +59,9 @@ public class MousePos extends MouseInputAdapter {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if(e != null) {
-		mMove = new MouseXY(e);
-		x = mMove.getX();
-		y = mMove.getY();
-		if(!firstPos) {
-			oX = x;
-			oY = y;
-			firstPos = true;
-		}
-		} else {
+			mDrag = new MouseXY(e);
+			x = mDrag.getX();
+			y = mDrag.getY();
 		}
 	}
 	@Override
@@ -74,13 +69,7 @@ public class MousePos extends MouseInputAdapter {
 		if(e != null) {
 		mMove = new MouseXY(e);
 		x = mMove.getX();
-		y = mMove.getY();
-		if(!firstPos) {
-			oX = x;
-			oY = y;
-			firstPos = true;
-		} 
-		} else {
+		y = mMove.getY(); 
 		}
 	}
 	@Override
@@ -96,5 +85,9 @@ public class MousePos extends MouseInputAdapter {
 		}
 		} else {
 		}
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
 	}
 }

@@ -41,6 +41,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	public static int jHeight;
 	
 	MainMenu menu = new MainMenu();
+	Listeners l = new Listeners();
 
 	public RunClass(JFrame par) 
 	{
@@ -52,6 +53,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
 	    addMouseMotionListener(hc); 
+	    menu = new MainMenu(true);
+	    menu.checkButtons();
 	}
 
 	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3, MouseEvent e4) {
@@ -69,11 +72,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
-		
-		Listeners l = new Listeners();
-	    l = new Listeners(event1, event2, event3, event4);
-	    menu.paint(window);
-	    menu = new MainMenu(true);
+        l = new Listeners(event1, event2, event3, event4);
 	    menu.paint(window);
 	}
         @Override

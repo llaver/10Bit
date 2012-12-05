@@ -25,6 +25,7 @@ import java.awt.Font;
 
 import tenbit.game.main.constants.*;
 import tenbit.game.main.info.Info;
+import tenbit.game.main.info.MousePos;
 import tenbit.game.main.window.*;
 
 public class MainMenu extends MouseInputAdapter  {
@@ -35,25 +36,32 @@ public class MainMenu extends MouseInputAdapter  {
 	private int height = RunClass.jHeight;
 	private int x;
 	private int y;
-	private boolean test = false;
+	private boolean once = false;
 	private boolean run = false;
 	private MouseEvent move = Listeners.mMoved;
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
+	private MouseEvent release = Listeners.mReleased;
 	private String currentMenu;
 	
 	//Leaderboard
 	private File[] lbButtons = new File[4];
+	private BufferedImage[] lbImages = new BufferedImage[4];
 	//Load Game
 	private File[] lgButtons = new File[4];
+	private BufferedImage[] lgImages = new BufferedImage[4];
 	//New Game
 	private File[] ngButtons = new File[4];
+	private BufferedImage[] ngImages = new BufferedImage[4];
 	//Options
 	private File[] opButtons = new File[4];
+	private BufferedImage[] opImages = new BufferedImage[4];
 	//Quit Game
 	private File[] qgButtons = new File[4];
+	private BufferedImage[] qgImages = new BufferedImage[4];
 	
 	private Map<File, Set<File>> titledButtons = MenuImages.allTitleButtons;
+	private Map<File, Set<File>> titledImages = MenuImages.allTitleButtons;
 	
 	Info info = new Info();
 	Info mousepos;
@@ -71,71 +79,95 @@ public class MainMenu extends MouseInputAdapter  {
 		currentMenu = "Main Menu";
 		run = start;
 		currentMenu = "Loading";
+		startMouse();
+		//System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
+	}
+	private void startMouse() {
 		mouseMoved(move);
 		mouseDragged(drag);			
 		mouseClicked(click);
-		checkButtons();
-		//System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
+		mouseReleased(release);
 	}
 	public void paint(Graphics window) {
 		width = RunClass.jWidth;
 		height = RunClass.jHeight;
+		x = MousePos.x;
+		y = MousePos.y;
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
 		mousepos = new Info(true, 1);
 	    mousepos.paint(window);
-	    paintButtons(g2);
-    	g2.drawImage(MenuImages.logoBlack, (width / 4), (height / 8), null);
-		g2.drawImage(MenuImages.logoWhite, (width / 4), (height / 12), null);
-		g2.drawImage(MenuImages.textNoHover, 245, 250, null);
+    	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
+		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
+		paintButtons(g2);
 	}
 	
-	private void checkButtons() {
-		int mapSize = titledButtons.size();		
-		for(int i = 0; i < mapSize; i++) {
-			File dir = titledButtons.keySet().iterator().next();
-			for(int j = 0; j < titledButtons.get(dir).size(); j++) {
+	public void checkButtons() {
+		File[] f = new File[5];
+		titledButtons.keySet().toArray(f);
+		for(int i = 0; i < f.length; i++) {
+			File dir = f[i];
+			for(int j = 0; j < dir.listFiles().length; j++) {
 				if(dir.getName().contains("Leaderboard") && titledButtons.get(dir).iterator().hasNext()) {
-					lbButtons[j] = titledButtons.get(dir).iterator().next();
+					System.out.println("LB j:" + j + " i:" + i);
+					lbButtons = dir.listFiles();
 				}
-				if(dir.getName().contains("Load Game") && titledButtons.get(dir).iterator().hasNext()) {
-					lgButtons[j] = titledButtons.get(dir).iterator().next();
+				else if(dir.getName().contains("Load Game") && titledButtons.get(dir).iterator().hasNext()) {
+					System.out.println("LG j:" + j + " i:" + i);
+					lgButtons = dir.listFiles();
 				}
-				if(dir.getName().contains("New Game") && titledButtons.get(dir).iterator().hasNext()) {
-					ngButtons[j] = titledButtons.get(dir).iterator().next();
+				else if(dir.getName().contains("New Game") && titledButtons.get(dir).iterator().hasNext()) {
+					System.out.println("NG j:" + j + " i:" + i);
+					ngButtons = dir.listFiles();
 				}
-				if(dir.getName().contains("Options") && titledButtons.get(dir).iterator().hasNext()) {
-					opButtons[j] = titledButtons.get(dir).iterator().next();
+				else if(dir.getName().contains("Options") && titledButtons.get(dir).iterator().hasNext()) {
+					System.out.println("OP j:" + j + " i:" + i);
+					opButtons = dir.listFiles();
 				}
-				if(dir.getName().contains("Quit Game") && titledButtons.get(dir).iterator().hasNext()) {
-					qgButtons[j] = titledButtons.get(dir).iterator().next();
+				else if(dir.getName().contains("Quit Game") && titledButtons.get(dir).iterator().hasNext()) {
+					System.out.println("QG j:" + j + " i:" + i);
+					qgButtons = dir.listFiles();
 				}
-			}			
+			}
+		}
+		try {
+			for(int i = 0; i < f.length; i++) {
+				for(int j = 0; j < 3; j++) {
+					lbImages[j] = ImageIO.read(lbButtons[j]);
+					lgImages[j] = ImageIO.read(lgButtons[j]);
+					ngImages[j] = ImageIO.read(ngButtons[j]);
+					opImages[j] = ImageIO.read(opButtons[j]);
+					qgImages[j] = ImageIO.read(qgButtons[j]);
+				}			
+			}
+		} catch (IOException e) {
+			//e.printStackTrace();
 		}
 	}
 	private void paintButtons(Graphics2D g2d) {
-		
+		g2d.drawImage(ngImages[1], 245, 160, null);
+		g2d.drawImage(lgImages[1], 245, 245, null);
+		g2d.drawImage(opImages[1], 245, 330, null);
+		g2d.drawImage(lbImages[1], 245, 415, null);
+		g2d.drawImage(qgImages[1], 245, 500, null);
+		//Button are all 300x70
+		if((x >= 245 && x <= 545) && (y >= 160 && y <= 230)) {
+			g2d.drawImage(ngImages[2], 245, 160, null);
+		}
+		else if((x >= 245 && x <= 545) && (y >= 245 && y <= 315)) {
+			g2d.drawImage(lgImages[2], 245, 245, null);
+		}
 	}
-	 
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		if(e != null) {
-		mMove = new MouseXY(e);
-		x = mMove.getX();
-		y = mMove.getY();
-		}		
-	}
-
-	//TODO Change to the correct coordinates
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e != null) {
+		/*if(e != null) {
 			mClick = new MouseXY(e);
 			if(currentMenu.contains("Main Menu")) {
 				//Campaign
 				if((mClick.getX() >= 150 && mClick.getX() <= 350) && (mClick.getY() >= 250 && mClick.getY() <= 350)) {
-					test = true;
+					
 					//currentMenu = "Campaign";
 				} 
 				//Skirmish
@@ -161,16 +193,20 @@ public class MainMenu extends MouseInputAdapter  {
 			} else if(currentMenu.contentEquals("Loading")) {
 			} else if(currentMenu.contentEquals(null)) {
 			}
-		}
+		}*/
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if(e != null) {
-			mMove = new MouseXY(e);
-			x = mMove.getX();
-			y = mMove.getY();
+			mDrag = new MouseXY(e);
+			x = mDrag.getX();
+			y = mDrag.getY();
 		}
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
 	}
 	public void campaignMenu() {
 		

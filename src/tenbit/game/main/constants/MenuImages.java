@@ -32,7 +32,9 @@ public final class MenuImages {
 	public static BufferedImage[] menuButtons;
 
 	public MenuImages() throws IOException {
+		
 		titledButtonsDirectories = buttons.listFiles();
+		
 		for (int i = 0; i < buttons.listFiles().length; i++) {
 			Set<File> titledButtons = new HashSet<File>();
 			
@@ -47,6 +49,7 @@ public final class MenuImages {
 			}
 			allTitleButtons.put(titledButtonsDirectories[i], titledButtons);
 		}
+		
 	    	backImg = ImageIO.read(background);
 	    	logoBlack = ImageIO.read(menuBlack);
 	    	logoWhite = ImageIO.read(menuWhite);
