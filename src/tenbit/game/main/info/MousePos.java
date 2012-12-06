@@ -60,7 +60,6 @@ public class MousePos extends MouseInputAdapter {
 		g2.drawString(Integer.toString(x), 35, 15);
 		g2.drawString("Y: ", 65, 15);
 		g2.drawString(Integer.toString(y), 85, 15);
-		g2.drawString(new Boolean(isPressed).toString(), 100, 15);
 		}
 	@Override
 	public void mouseMoved(MouseEvent e) {

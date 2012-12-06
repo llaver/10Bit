@@ -38,6 +38,7 @@ public class MainMenu extends MouseInputAdapter  {
 	private int y;
 	private boolean once = false;
 	private boolean run = false;
+	private boolean isClicked = false;
 	private MouseEvent move = Listeners.mMoved;
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
@@ -84,9 +85,9 @@ public class MainMenu extends MouseInputAdapter  {
 	}
 	private void startMouse() {
 		mouseMoved(move);
-		mouseDragged(drag);			
-		mouseClicked(click);
+		mouseDragged(drag);	
 		mouseReleased(release);
+		mouseClicked(click);
 	}
 	public void paint(Graphics window) {
 		width = RunClass.jWidth;
@@ -100,6 +101,7 @@ public class MainMenu extends MouseInputAdapter  {
 	    mousepos.paint(window);
     	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
 		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
+		g2.drawString(new Boolean(isClicked).toString(), 100, 15);
 		paintButtons(g2);
 	}
 	
@@ -152,7 +154,7 @@ public class MainMenu extends MouseInputAdapter  {
 		g2d.drawImage(lbImages[1], 245, 415, null);
 		g2d.drawImage(qgImages[1], 245, 500, null);
 		//Button are all 300x70
-		if((x >= 245 && x <= 545) && !MousePos.isPressed) {
+		if((x >= 245 && x <= 545) && !isClicked) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[2], 245, 160, null);
 			}
@@ -168,7 +170,7 @@ public class MainMenu extends MouseInputAdapter  {
 			else if(y >= 500 && y <= 570) {
 				g2d.drawImage(qgImages[2], 245, 500, null);
 			}
-		} else if((x >= 245 && x <= 545) && MousePos.isPressed) {
+		} else if((x >= 245 && x <= 545) && isClicked) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[0], 245, 160, null);
 			}
@@ -189,38 +191,10 @@ public class MainMenu extends MouseInputAdapter  {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		/*if(e != null) {
-			mClick = new MouseXY(e);
-			if(currentMenu.contains("Main Menu")) {
-				//Campaign
-				if((mClick.getX() >= 150 && mClick.getX() <= 350) && (mClick.getY() >= 250 && mClick.getY() <= 350)) {
-					
-					//currentMenu = "Campaign";
-				} 
-				//Skirmish
-				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
-					currentMenu = "Skirmish";
-				}
-				//Settings
-				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
-					currentMenu = "Options";
-				}
-				//Exit Game
-				if((mClick.getX() >= -1 && mClick.getX() <= -1) && (mClick.getY() >= -1 && mClick.getY() <= -1)) {
-					System.exit(1);
-				}
-			} else if(currentMenu.contentEquals("Campaign")) {
-				campaignMenu();
-			} else if(currentMenu.contentEquals("Skirmish")) {
-				skirmishMenu();
-			} else if(currentMenu.contentEquals("Options")) {
-				optionsMenu();
-			} else if(currentMenu.contentEquals("Exit")) {
-				exitMenu();
-			} else if(currentMenu.contentEquals("Loading")) {
-			} else if(currentMenu.contentEquals(null)) {
-			}
-		}*/
+		System.out.println("LOL working? clicked");
+		if(e != null) {
+			isClicked = true;
+		}
 	}
 
 	@Override
@@ -233,7 +207,10 @@ public class MainMenu extends MouseInputAdapter  {
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		System.out.println("LOL working? released");
+		if( e != null) {
+			isClicked = false;
+		}
 	}
 	public void campaignMenu() {
 		
