@@ -26,6 +26,7 @@ public class MousePos extends MouseInputAdapter {
 	private MouseXY mDrag = new MouseXY();
 	private boolean isOn;
 	private boolean firstPos = false; //for when the old position is first set to the new position
+	public static boolean isPressed = false;
 	public static int x = -1;
 	public static int y = -1;
 	private int oX = -1; //Old Cursor x coordinate for painting cursor
@@ -34,6 +35,7 @@ public class MousePos extends MouseInputAdapter {
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
 	private MouseEvent release = Listeners.mReleased;
+	private MouseEvent press = Listeners.mPressed;
 	
 	
 	public MousePos() {
@@ -41,20 +43,24 @@ public class MousePos extends MouseInputAdapter {
 	}
 	public MousePos(boolean on) {
 		isOn = on;
+		mousePressed(press);
 		mouseDragged(drag);
 		mouseMoved(move);
+		mouseReleased(release);
 	} 
 	public void paint(Graphics window) {
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
 		g2.clearRect(30, 3, 30, 15);
 		g2.clearRect(80, 3, 30, 15);
+		g2.clearRect(100, 15, 30, 15);
 		g2.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 800, null);
 		g2.setColor(Color.CYAN);
 		g2.drawString("X: ", 15, 15);
 		g2.drawString(Integer.toString(x), 35, 15);
 		g2.drawString("Y: ", 65, 15);
 		g2.drawString(Integer.toString(y), 85, 15);
+		g2.drawString(new Boolean(isPressed).toString(), 100, 15);
 		}
 	@Override
 	public void mouseMoved(MouseEvent e) {
@@ -73,6 +79,11 @@ public class MousePos extends MouseInputAdapter {
 		}
 	}
 	@Override
+	public void mousePressed(MouseEvent e) {
+		isPressed = true;
+	}
+	
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e != null) {
 		mMove = new MouseXY(e);
@@ -88,6 +99,6 @@ public class MousePos extends MouseInputAdapter {
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		isPressed = false;
 	}
 }

@@ -19,6 +19,7 @@ public class Listeners {
 	public static MouseEvent mMoved;
 	public static MouseEvent mDrag;
 	public static MouseEvent mClick;
+	public static MouseEvent mPressed;
 	public static MouseEvent mReleased;
 	public int x;
 	
@@ -30,10 +31,11 @@ public class Listeners {
 		mClick = null;
 		mReleased = null;
 	}
-	public Listeners(MouseEvent cl, MouseEvent dr, MouseEvent mv, MouseEvent mr) {
+	public Listeners(MouseEvent cl, MouseEvent dr, MouseEvent mv, MouseEvent mr, MouseEvent pr) {
 		mClick = cl;
 		mDrag = dr;
 		mMoved = mv;
 		mReleased = mr;
+		mPressed = pr;
 	}
 }

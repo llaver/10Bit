@@ -36,6 +36,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event2;
 	private MouseEvent event3;
 	private MouseEvent event4;
+	private MouseEvent event5;
 	
 	public static int jWidth;
 	public static int jHeight;
@@ -57,11 +58,12 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	    menu.checkButtons();
 	}
 
-	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3, MouseEvent e4) {
+	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3, MouseEvent e4, MouseEvent e5) {
 		event1 = e1;
 		event2 = e2;
 		event3 = e3;
 		event4 = e4;
+		event5 = e5;
 	}
 	
 	public void paint( Graphics window )
@@ -72,7 +74,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
-        l = new Listeners(event1, event2, event3, event4);
+        l = new Listeners(event1, event2, event3, event4, event5);
 	    menu.paint(window);
 	}
         @Override
@@ -106,6 +108,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
     	private MouseEvent me2;
     	private MouseEvent me3;
     	private MouseEvent me4;
+    	private MouseEvent me5;
 
 		@Override
 		public void mouseClicked(MouseEvent e1) {
@@ -129,8 +132,13 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 			me4 = e4;
 			updateSize();
 		}
+		@Override
+		public void mousePressed(MouseEvent e5) {
+			me5 = e5;
+			updateSize();
+		}
 		void updateSize() {
-			setEvent(me1, me2, me3, me4);
+			setEvent(me1, me2, me3, me4, me5);
 		}
     }
 }

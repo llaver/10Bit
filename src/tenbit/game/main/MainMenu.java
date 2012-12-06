@@ -152,11 +152,38 @@ public class MainMenu extends MouseInputAdapter  {
 		g2d.drawImage(lbImages[1], 245, 415, null);
 		g2d.drawImage(qgImages[1], 245, 500, null);
 		//Button are all 300x70
-		if((x >= 245 && x <= 545) && (y >= 160 && y <= 230)) {
-			g2d.drawImage(ngImages[2], 245, 160, null);
-		}
-		else if((x >= 245 && x <= 545) && (y >= 245 && y <= 315)) {
-			g2d.drawImage(lgImages[2], 245, 245, null);
+		if((x >= 245 && x <= 545) && !MousePos.isPressed) {
+			if(y >= 160 && y <= 230) {
+				g2d.drawImage(ngImages[2], 245, 160, null);
+			}
+			else if(y >= 245 && y <= 315) {
+				g2d.drawImage(lgImages[2], 245, 245, null);
+			}
+			else if(y >= 330 && y <= 400) {
+				g2d.drawImage(opImages[2], 245, 330, null);
+			}
+			else if(y >= 415 && y <= 485) {
+				g2d.drawImage(lbImages[2], 245, 415, null);
+			}
+			else if(y >= 500 && y <= 570) {
+				g2d.drawImage(qgImages[2], 245, 500, null);
+			}
+		} else if((x >= 245 && x <= 545) && MousePos.isPressed) {
+			if(y >= 160 && y <= 230) {
+				g2d.drawImage(ngImages[0], 245, 160, null);
+			}
+			else if(y >= 245 && y <= 315) {
+				g2d.drawImage(lgImages[0], 245, 245, null);
+			}
+			else if(y >= 330 && y <= 400) {
+				g2d.drawImage(opImages[0], 245, 330, null);
+			}
+			else if(y >= 415 && y <= 485) {
+				g2d.drawImage(lbImages[0], 245, 415, null);
+			}
+			else if(y >= 500 && y <= 570) {
+				g2d.drawImage(qgImages[0], 245, 500, null);
+			}
 		}
 	}
 	
