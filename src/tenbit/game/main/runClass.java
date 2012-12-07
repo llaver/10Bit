@@ -40,6 +40,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	
 	public static int jWidth;
 	public static int jHeight;
+	public static boolean isPressed = false;
+	public static boolean isClicked = false;
 	
 	MainMenu menu = new MainMenu();
 	Listeners l = new Listeners();
@@ -50,7 +52,6 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		jHeight = getHeight();
 		this.addKeyListener(this);
 		new Thread(this).start();
-		//setVisible(true);
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
 	    addMouseMotionListener(hc); 
@@ -113,6 +114,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		@Override
 		public void mouseClicked(MouseEvent e1) {
 			me1 = e1;
+			isClicked = true;
 			updateSize();
 		}
 
@@ -130,11 +132,13 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		@Override
 		public void mouseReleased(MouseEvent e4) {
 			me4 = e4;
+			isPressed = false;
 			updateSize();
 		}
 		@Override
 		public void mousePressed(MouseEvent e5) {
 			me5 = e5;
+			isPressed = true;
 			updateSize();
 		}
 		void updateSize() {

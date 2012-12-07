@@ -38,7 +38,6 @@ public class MainMenu extends MouseInputAdapter  {
 	private int y;
 	private boolean once = false;
 	private boolean run = false;
-	private boolean isClicked = false;
 	private MouseEvent move = Listeners.mMoved;
 	private MouseEvent click = Listeners.mClick;
 	private MouseEvent drag = Listeners.mDrag;
@@ -96,13 +95,13 @@ public class MainMenu extends MouseInputAdapter  {
 		y = MousePos.y;
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
+		//g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
 		mousepos = new Info(true, 1);
 	    mousepos.paint(window);
-    	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
-		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
-		g2.drawString(new Boolean(isClicked).toString(), 100, 15);
-		paintButtons(g2);
+    	//g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
+		//g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
+		g2.drawString(new Boolean(RunClass.isPressed).toString(), 110, 15);
+		//paintButtons(g2);
 	}
 	
 	public void checkButtons() {
@@ -154,7 +153,7 @@ public class MainMenu extends MouseInputAdapter  {
 		g2d.drawImage(lbImages[1], 245, 415, null);
 		g2d.drawImage(qgImages[1], 245, 500, null);
 		//Button are all 300x70
-		if((x >= 245 && x <= 545) && !isClicked) {
+		if((x >= 245 && x <= 545) && !RunClass.isPressed) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[2], 245, 160, null);
 			}
@@ -170,7 +169,7 @@ public class MainMenu extends MouseInputAdapter  {
 			else if(y >= 500 && y <= 570) {
 				g2d.drawImage(qgImages[2], 245, 500, null);
 			}
-		} else if((x >= 245 && x <= 545) && isClicked) {
+		} else if((x >= 245 && x <= 545) && RunClass.isPressed) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[0], 245, 160, null);
 			}
@@ -186,14 +185,29 @@ public class MainMenu extends MouseInputAdapter  {
 			else if(y >= 500 && y <= 570) {
 				g2d.drawImage(qgImages[0], 245, 500, null);
 			}
+		} else if((x >= 245 && x <= 545) && RunClass.isClicked) {
+			if(y >= 160 && y <= 230) {
+				g2d.drawImage(ngImages[1], 245, 160, null);
+			}
+			else if(y >= 245 && y <= 315) {
+				g2d.drawImage(lgImages[1], 245, 245, null);
+			}
+			else if(y >= 330 && y <= 400) {
+				g2d.drawImage(opImages[1], 245, 330, null);
+			}
+			else if(y >= 415 && y <= 485) {
+				g2d.drawImage(lbImages[1], 245, 415, null);
+			}
+			else if(y >= 500 && y <= 570) {
+				g2d.drawImage(qgImages[1], 245, 500, null);
+			}
 		}
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("LOL working? clicked");
 		if(e != null) {
-			isClicked = true;
+			
 		}
 	}
 
@@ -207,9 +221,8 @@ public class MainMenu extends MouseInputAdapter  {
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println("LOL working? released");
 		if( e != null) {
-			isClicked = false;
+
 		}
 	}
 	public void campaignMenu() {
