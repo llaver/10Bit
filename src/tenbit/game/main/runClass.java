@@ -21,6 +21,7 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 import tenbit.game.main.constants.*;
+import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
 
 public class RunClass extends JPanel implements KeyListener, Runnable
@@ -45,6 +46,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	
 	MainMenu menu = new MainMenu();
 	Listeners l = new Listeners();
+	Map map = new Map();
 
 	public RunClass(JFrame par) 
 	{
@@ -74,9 +76,10 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		final Graphics2D g2d = (Graphics2D) window;
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
+        //g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
         l = new Listeners(event1, event2, event3, event4, event5);
-	    menu.paint(window);
+	    //menu.paint(window);
+        map.paint(window);
 	}
         @Override
         public void run()

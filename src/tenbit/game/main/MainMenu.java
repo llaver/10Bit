@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.Toolkit;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Map;
@@ -100,7 +101,7 @@ public class MainMenu extends MouseInputAdapter  {
 	    mousepos.paint(window);
     	//g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
 		//g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
-		g2.drawString(new Boolean(RunClass.isPressed).toString(), 110, 15);
+	    g2.drawString(new Boolean(RunClass.isPressed).toString(), 110, 15);
 		//paintButtons(g2);
 	}
 	
