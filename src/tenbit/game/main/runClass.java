@@ -44,6 +44,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	public static boolean isPressed = false;
 	public static boolean isClicked = false;
 	
+	Info info = new Info();
+	Info mousepos;
 	MainMenu menu = new MainMenu();
 	Listeners l = new Listeners();
 	Map map = new Map();
@@ -76,9 +78,11 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		final Graphics2D g2d = (Graphics2D) window;
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        //g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
+        g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
         l = new Listeners(event1, event2, event3, event4, event5);
 	    //menu.paint(window);
+        mousepos = new Info(true, 1);
+	    mousepos.paint(window);
         map.paint(window);
 	}
         @Override
