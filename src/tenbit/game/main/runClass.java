@@ -38,6 +38,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event3;
 	private MouseEvent event4;
 	private MouseEvent event5;
+	private MouseWheelEvent wheelEvent1;
 	
 	public static int jWidth;
 	public static int jHeight;
@@ -58,7 +59,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		new Thread(this).start();
 		HandlerClass hc = new HandlerClass();
 		addMouseListener(hc);
-	    addMouseMotionListener(hc); 
+	    addMouseMotionListener(hc);
+	    WheelClass wc = new WheelClass();
+	    addMouseWheelListener(wc);
 	    menu = new MainMenu(true);
 	    menu.checkButtons();
 	}
@@ -70,6 +73,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		event4 = e4;
 		event5 = e5;
 	}
+	private void setWheelEvent(MouseWheelEvent mwe1) {
+		wheelEvent1 = mwe1;
+	}
 	
 	public void paint( Graphics window )
 	{
@@ -80,6 +86,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
         l = new Listeners(event1, event2, event3, event4, event5);
+        l = new Listeners(wheelEvent1);
 	    //menu.paint(window);
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
@@ -148,8 +155,20 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 			isPressed = true;
 			updateSize();
 		}
-		void updateSize() {
+		private void updateSize() {
 			setEvent(me1, me2, me3, me4, me5);
+		}
+    }
+    private class WheelClass implements MouseWheelListener {
+    	private MouseWheelEvent we1;
+    	
+		@Override
+		public void mouseWheelMoved(MouseWheelEvent mwe1) {
+			we1 = mwe1;
+			updateEvent();
+		}
+		private void updateEvent() {
+			setWheelEvent(we1);
 		}
     }
 }
