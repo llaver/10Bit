@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 
@@ -13,7 +14,7 @@ import tenbit.game.main.RunClass;
 import tenbit.game.main.constants.Listeners;
 import tenbit.game.main.constants.MenuImages;
 
-public class Map {
+public class Map implements MouseWheelListener {
 	
 	private double zoom = 1;
 	private int mapLength;
@@ -21,12 +22,14 @@ public class Map {
 	private int[][] grid;
 	private boolean isRandom;
 	private Layout layout;
-	private MouseWheelEvent mwe = Listeners.mwEvent;
+	private MouseWheelEvent mwe = null;
 
 	public Map() {
 		mapLength = 80;
 		mapWidth = 60;
 		createMap();
+	    WheelClass wc = new WheelClass();
+	    //addMouseWheelListener(wc);
 	}
 	public Map(int l, int w) {
 		mapLength = l;
@@ -58,12 +61,18 @@ public class Map {
 		
 	}
 	
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		System.out.println("test");
+	}
+	
 	private void checkZoom() {
 		double startZoom = zoom;
 		int amount = 0;
 		int zoomRoom = (int) ((2 - zoom) * 10);
 		if(mwe != null) {
 			amount = mwe.getWheelRotation();
+			System.out.println(mwe.getWheelRotation());
 		}		
 		if(amount != 0) {
 			if(amount < 0) {
@@ -73,14 +82,21 @@ public class Map {
 					zoom = zoom - ((double)(amount - zoomRoom) / 10);
 				}
 			} else if(amount > 0) {
-				
+				if(amount + zoomRoom >= 20) {
+					zoom = 0;
+				} else {
+				zoom = zoom - ((double)(amount + zoomRoom) / 10);
+				}				
 			}
 		}
+		amount = 0;
 	}
 	
 	public void paint(Graphics g) {
 		Rectangle r = new Rectangle(0, 0, RunClass.jWidth / 4 * 3, RunClass.jHeight / 4 * 3);
 		Area a = new Area(r);
+		//mwe = Listeners.mwEvent;
+		//mouseWheelMoved(mwe);
 		checkZoom();
 		Graphics2D g2 = (Graphics2D) g;
 		Graphics2D field = (Graphics2D) g2.create(0, 0, RunClass.jWidth / 4 * 3, RunClass.jHeight / 4 * 3);
@@ -91,5 +107,17 @@ public class Map {
 		//moveGrid(g2);
 	}
 	
+	 private class WheelClass implements MouseWheelListener {
+	    	private MouseWheelEvent we1;
+	    	
+			@Override
+			public void mouseWheelMoved(MouseWheelEvent mwe1) {
+				we1 = mwe1;
+				updateEvent();
+			}
+			private void updateEvent() {
+				mwe = we1;
+			}
+	    }
 
 }

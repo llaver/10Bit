@@ -48,7 +48,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	Info info = new Info();
 	Info mousepos;
 	MainMenu menu = new MainMenu();
-	Listeners l = new Listeners();
+	Listeners ml = new Listeners();
+	Listeners mwl = new Listeners();
 	Map map = new Map();
 
 	public RunClass(JFrame par) 
@@ -85,8 +86,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		g2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
-        l = new Listeners(event1, event2, event3, event4, event5);
-        l = new Listeners(wheelEvent1);
+        ml = new Listeners(event1, event2, event3, event4, event5);
+        mwl = new Listeners(wheelEvent1);
 	    //menu.paint(window);
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);

@@ -32,6 +32,7 @@ public class Listeners {
 		mClick = null;
 		mPressed = null;
 		mReleased = null;
+		mwEvent = null;
 	}
 	public Listeners(MouseEvent cl, MouseEvent dr, MouseEvent mv, MouseEvent mr, MouseEvent pr) {
 		mClick = cl;
