@@ -166,6 +166,8 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		@Override
 		public void mouseWheelMoved(MouseWheelEvent mwe1) {
 			we1 = mwe1;
+			map.setWheelInfo(true, mwe1.getWheelRotation());
+			System.out.println(mwe1.getWheelRotation());
 			updateEvent();
 		}
 		private void updateEvent() {

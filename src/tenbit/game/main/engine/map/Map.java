@@ -9,12 +9,14 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import tenbit.game.main.RunClass;
 import tenbit.game.main.constants.Listeners;
 import tenbit.game.main.constants.MenuImages;
 
-public class Map implements MouseWheelListener {
+public class Map {
 	
 	private double zoom = 1;
 	private int mapLength;
@@ -22,14 +24,14 @@ public class Map implements MouseWheelListener {
 	private int[][] grid;
 	private boolean isRandom;
 	private Layout layout;
+	private boolean scroll = false;
+	private int clicks = 0;
 	private MouseWheelEvent mwe = null;
 
 	public Map() {
 		mapLength = 80;
 		mapWidth = 60;
 		createMap();
-	    WheelClass wc = new WheelClass();
-	    //addMouseWheelListener(wc);
 	}
 	public Map(int l, int w) {
 		mapLength = l;
@@ -47,6 +49,10 @@ public class Map implements MouseWheelListener {
 		//layout = new Layout(terrain);
 		
 	}
+	public void setWheelInfo(boolean s, int c) {
+		scroll = s;
+		clicks = c;
+	}
 	public void setGrid(Graphics2D g2d) {
 		g2d.setColor(Color.GREEN);
 		for(int i = 0; i <= grid[0].length / 2; i++) {
@@ -61,63 +67,39 @@ public class Map implements MouseWheelListener {
 		
 	}
 	
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		System.out.println("test");
-	}
-	
 	private void checkZoom() {
 		double startZoom = zoom;
-		int amount = 0;
-		int zoomRoom = (int) ((2 - zoom) * 10);
-		if(mwe != null) {
-			amount = mwe.getWheelRotation();
-			System.out.println(mwe.getWheelRotation());
-		}		
-		if(amount != 0) {
-			if(amount < 0) {
-				if(amount + zoomRoom <= 0) {
+		int zoomRoom = (int) ((2 - zoom) * 10);	
+		if(clicks != 0 && scroll) {
+			if(clicks < 0) {
+				if(clicks + zoomRoom <= 0) {
 					zoom = 2.0;
 				} else {
-					zoom = zoom - ((double)(amount - zoomRoom) / 10);
+					zoom = zoom - ((double)(clicks - zoomRoom) / 10);
 				}
-			} else if(amount > 0) {
-				if(amount + zoomRoom >= 20) {
+			} else if(clicks > 0) {
+				if(clicks + zoomRoom >= 20) {
 					zoom = 0;
 				} else {
-				zoom = zoom - ((double)(amount + zoomRoom) / 10);
+				zoom = zoom - ((double)(clicks + zoomRoom) / 10);
 				}				
 			}
 		}
-		amount = 0;
+		clicks = 0;
+		scroll = false;
 	}
 	
 	public void paint(Graphics g) {
 		Rectangle r = new Rectangle(0, 0, RunClass.jWidth / 4 * 3, RunClass.jHeight / 4 * 3);
 		Area a = new Area(r);
-		//mwe = Listeners.mwEvent;
+		mwe = Listeners.mwEvent;
 		//mouseWheelMoved(mwe);
 		checkZoom();
 		Graphics2D g2 = (Graphics2D) g;
 		Graphics2D field = (Graphics2D) g2.create(0, 0, RunClass.jWidth / 4 * 3, RunClass.jHeight / 4 * 3);
 		g2.draw(r);
-		
 		field.scale(zoom, zoom);
 		setGrid(field);
 		//moveGrid(g2);
 	}
-	
-	 private class WheelClass implements MouseWheelListener {
-	    	private MouseWheelEvent we1;
-	    	
-			@Override
-			public void mouseWheelMoved(MouseWheelEvent mwe1) {
-				we1 = mwe1;
-				updateEvent();
-			}
-			private void updateEvent() {
-				mwe = we1;
-			}
-	    }
-
 }
