@@ -29,7 +29,7 @@ import tenbit.game.main.info.Info;
 import tenbit.game.main.info.MousePos;
 import tenbit.game.main.window.*;
 
-public class MainMenu extends MouseInputAdapter  {
+public class MainMenu extends MouseInputAdapter {
 	private MouseXY mClick;
 	private MouseXY mMove = new MouseXY();
 	private MouseXY mDrag = new MouseXY();

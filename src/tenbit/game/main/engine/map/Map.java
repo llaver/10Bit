@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
@@ -22,28 +23,19 @@ public class Map {
 	private int mapLength;
 	private int mapWidth;
 	private int[][] grid;
-	private boolean isRandom;
+	private Shape[] tile;
 	private Layout layout;
 	private boolean scroll = false;
 	private int clicks = 0;
-	private MouseWheelEvent mwe = null;
 
 	public Map() {
 		mapLength = 80;
 		mapWidth = 60;
 		createMap();
 	}
-	public Map(int l, int w) {
-		mapLength = l;
-		mapWidth = w;
-		createMap();
-	}
-	public Map(boolean r) {
-		isRandom = r;
-		createMap();
-	}
 	private void createMap() {
 		grid = new int[mapLength][mapWidth];
+		tile = new Shape[mapLength * mapWidth];
 		//Terrain terrain = new Terrain();
 		//layout = new Layout();
 		//layout = new Layout(terrain);
@@ -53,7 +45,7 @@ public class Map {
 		scroll = s;
 		clicks = c;
 	}
-	public void setGrid(Graphics2D g2d) {
+	private void setGrid(Graphics2D g2d) {
 		g2d.setColor(Color.GREEN);
 		for(int i = 0; i <= grid[0].length / 2; i++) {
 			g2d.drawLine((RunClass.jWidth/ grid[0].length) * i * 2, 0, (RunClass.jWidth/ grid[0].length) * i * 2, RunClass.jHeight);
@@ -62,8 +54,7 @@ public class Map {
 			g2d.drawLine(0, (RunClass.jHeight/ grid.length) * j * 4, RunClass.jWidth, (RunClass.jHeight/ grid.length) * j * 4);
 		}
 	}
-	
-	private void moveGrid(Graphics2D g2d) {
+	private void setTile(Graphics2D g2d) {
 		
 	}
 	
@@ -90,16 +81,14 @@ public class Map {
 	}
 	
 	public void paint(Graphics g) {
-		Rectangle r = new Rectangle(0, 0, RunClass.jWidth / 4 * 3, RunClass.jHeight / 4 * 3);
+		Rectangle r = new Rectangle(0, 0, RunClass.jWidth, (RunClass.jHeight / 4 * 3) - 5);
 		Area a = new Area(r);
-		mwe = Listeners.mwEvent;
-		//mouseWheelMoved(mwe);
-		checkZoom();
 		Graphics2D g2 = (Graphics2D) g;
-		Graphics2D field = (Graphics2D) g2.create(0, 0, RunClass.jWidth / 4 * 3, RunClass.jHeight / 4 * 3);
+		Graphics2D field = (Graphics2D) g2.create(0, 0, RunClass.jWidth, (RunClass.jHeight / 4 * 3) - 5);
+		field.setColor(Color.BLACK);
+		field.fill(field.getClip());
 		g2.draw(r);
-		field.scale(zoom, zoom);
 		setGrid(field);
-		//moveGrid(g2);
-	}
+		setTile(field);
+ 	}
 }
