@@ -51,6 +51,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	Listeners ml = new Listeners();
 	Listeners mwl = new Listeners();
 	Map map = new Map();
+	LoadLogos ll = new LoadLogos();
 
 	public RunClass(JFrame par) 
 	{
@@ -88,10 +89,11 @@ public class RunClass extends JPanel implements KeyListener, Runnable
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
         ml = new Listeners(event1, event2, event3, event4, event5);
         mwl = new Listeners(wheelEvent1);
-	    //menu.paint(window);
+	    //ll.paint(window);
+        //menu.paint(window);
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
-        map.paint(window);
+        //map.paint(window);
 	}
         @Override
         public void run()
