@@ -36,7 +36,7 @@ public class Map {
 	}
 	private void createMap() {
 		grid = new int[mapLength][mapWidth];
-		tiles = new Shape[mapLength * mapWidth - 1];
+		tiles = new Shape[mapLength * mapWidth];
 		//Terrain terrain = new Terrain();
 		//layout = new Layout();
 		//layout = new Layout(terrain);
@@ -71,7 +71,10 @@ public class Map {
 				x = ((RunClass.jWidth/ grid[0].length) * j * 2);
 				width = ((RunClass.jWidth/ grid[0].length) * j * 2) - ((RunClass.jWidth/ grid[0].length) * j * 2);
 				tiles[i*j] = new Rectangle(x, y, width, height);
-				System.out.println(tiles[x*y].getBounds());
+				System.out.println(i);
+				System.out.println(j);
+				System.out.println(i*j);
+				System.out.println(tiles[i*j].getBounds());
 			}
 		}		
 	}
