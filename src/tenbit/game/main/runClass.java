@@ -51,7 +51,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	Listeners ml = new Listeners();
 	Listeners mwl = new Listeners();
 	Map map = new Map();
-	LoadLogos ll = new LoadLogos();
+	//LoadLogos ll = new LoadLogos();
 
 	public RunClass(JFrame par) 
 	{
@@ -91,9 +91,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
         mwl = new Listeners(wheelEvent1);
 	    //ll.paint(window);
         //menu.paint(window);
+        map.paint(window);
         mousepos = new Info(true, 1);
-	    mousepos.paint(window);
-        //map.paint(window);
+	    mousepos.paint(window);        
 	}
         @Override
         public void run()

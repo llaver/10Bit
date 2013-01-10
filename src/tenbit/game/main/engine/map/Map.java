@@ -23,9 +23,10 @@ public class Map {
 	private int mapLength;
 	private int mapWidth;
 	private int[][] grid;
-	private Shape[] tile;
+	private Shape[] tiles;
 	private Layout layout;
 	private boolean scroll = false;
+	private boolean hasRun = false;
 	private int clicks = 0;
 
 	public Map() {
@@ -35,7 +36,7 @@ public class Map {
 	}
 	private void createMap() {
 		grid = new int[mapLength][mapWidth];
-		tile = new Shape[mapLength * mapWidth];
+		tiles = new Shape[mapLength * mapWidth - 1];
 		//Terrain terrain = new Terrain();
 		//layout = new Layout();
 		//layout = new Layout(terrain);
@@ -44,6 +45,12 @@ public class Map {
 	public void setWheelInfo(boolean s, int c) {
 		scroll = s;
 		clicks = c;
+	}
+	private void firstRun(Graphics2D g2d) {
+		if(!hasRun) {
+			setTiles(g2d);
+			hasRun = true;
+		}
 	}
 	private void setGrid(Graphics2D g2d) {
 		g2d.setColor(Color.GREEN);
@@ -54,8 +61,19 @@ public class Map {
 			g2d.drawLine(0, (RunClass.jHeight/ grid.length) * j * 4, RunClass.jWidth, (RunClass.jHeight/ grid.length) * j * 4);
 		}
 	}
-	private void setTile(Graphics2D g2d) {
-		
+	private void setTiles(Graphics2D g2d) {
+		for (int i = 0; i < grid.length / 2; i++) {
+			int y, height;
+			y = ((RunClass.jHeight/ grid.length) * i * 4);
+			height = ((RunClass.jHeight/ grid.length) * i * 4) - ((RunClass.jHeight/ grid.length) * i * 4);
+			for(int j = 0; j < grid[0].length / 2; j++) {
+				int x, width;
+				x = ((RunClass.jWidth/ grid[0].length) * j * 2);
+				width = ((RunClass.jWidth/ grid[0].length) * j * 2) - ((RunClass.jWidth/ grid[0].length) * j * 2);
+				tiles[i*j] = new Rectangle(x, y, width, height);
+				System.out.println(tiles[x*y].getBounds());
+			}
+		}		
 	}
 	
 	private void checkZoom() {
@@ -89,6 +107,9 @@ public class Map {
 		field.fill(field.getClip());
 		g2.draw(r);
 		setGrid(field);
-		setTile(field);
+		firstRun(field);
+		g2.setColor(Color.RED);
+		g2.drawLine(50, 50, 100, 100);
+		g2.draw(tiles[0]);
  	}
 }

@@ -7,7 +7,7 @@ public class Terrain {
 	
 	public Terrain() {
 		terrainType = -1;
-		
+		checkType();
 	}
 	public void setTerrain(int choice) {
 		
@@ -17,7 +17,6 @@ public class Terrain {
 	}
 	private int getTerrain() {
 		return terrainType;
-		
 	}
 	private void checkType() {
 		if(terrainType < 0) 

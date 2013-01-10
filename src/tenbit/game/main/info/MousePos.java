@@ -53,9 +53,9 @@ public class MousePos extends MouseInputAdapter {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.clearRect(30, 3, 30, 15);
 		g2.clearRect(80, 3, 30, 15);
-		g2.clearRect(100, 15, 30, 15);
-		g2.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 800, null);
-		g2.setColor(Color.CYAN);
+		//g2.clearRect(100, 15, 30, 15);
+		//g2.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 800, null);
+		g2.setColor(Color.RED);
 		g2.drawString("X: ", 15, 15);
 		g2.drawString(Integer.toString(x), 35, 15);
 		g2.drawString("Y: ", 65, 15);
