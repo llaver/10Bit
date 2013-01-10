@@ -39,6 +39,9 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private MouseEvent event4;
 	private MouseEvent event5;
 	private MouseWheelEvent wheelEvent1;
+	private KeyEvent keyEvent1;
+	private KeyEvent keyEvent2;
+	private KeyEvent keyEvent3;
 	
 	public static int jWidth;
 	public static int jHeight;

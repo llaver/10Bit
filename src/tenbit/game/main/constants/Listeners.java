@@ -22,6 +22,9 @@ public class Listeners {
 	public static MouseEvent mPressed;
 	public static MouseEvent mReleased;
 	public static MouseWheelEvent mwEvent;
+	public static KeyEvent kPressed;
+	public static KeyEvent kReleased;
+	public static KeyEvent kTyped;
 	public int x;
 	
 	
@@ -43,5 +46,10 @@ public class Listeners {
 	}
 	public Listeners(MouseWheelEvent mw) {
 		mwEvent = mw;
+	}
+	public Listeners(KeyEvent kp, KeyEvent kr, KeyEvent kt) {
+		kPressed = kp;
+		kReleased = kr;
+		kTyped = kt;
 	}
 }

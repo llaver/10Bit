@@ -19,6 +19,8 @@ import tenbit.game.main.constants.MenuImages;
 
 public class Map {
 	
+	Tiles t = new Tiles();
+	
 	private double zoom = 1;
 	private int mapLength;
 	private int mapWidth;
@@ -28,6 +30,7 @@ public class Map {
 	private boolean scroll = false;
 	private boolean hasRun = false;
 	private int clicks = 0;
+	private int lol = 500;
 
 	public Map() {
 		mapLength = 80;
@@ -36,7 +39,7 @@ public class Map {
 	}
 	private void createMap() {
 		grid = new int[mapLength][mapWidth];
-		tiles = new Shape[mapLength * mapWidth];
+		tiles = new Shape[4800];
 		//Terrain terrain = new Terrain();
 		//layout = new Layout();
 		//layout = new Layout(terrain);
@@ -48,7 +51,9 @@ public class Map {
 	}
 	private void firstRun(Graphics2D g2d) {
 		if(!hasRun) {
-			setTiles(g2d);
+			t.setGrid(grid);
+			t.setTiles(g2d);
+			tiles = Tiles.tiles;
 			hasRun = true;
 		}
 	}
@@ -61,23 +66,7 @@ public class Map {
 			g2d.drawLine(0, (RunClass.jHeight/ grid.length) * j * 4, RunClass.jWidth, (RunClass.jHeight/ grid.length) * j * 4);
 		}
 	}
-	private void setTiles(Graphics2D g2d) {
-		for (int i = 0; i < grid.length / 2; i++) {
-			int y, height;
-			y = ((RunClass.jHeight/ grid.length) * i * 4);
-			height = ((RunClass.jHeight/ grid.length) * i * 4) - ((RunClass.jHeight/ grid.length) * i * 4);
-			for(int j = 0; j < grid[0].length / 2; j++) {
-				int x, width;
-				x = ((RunClass.jWidth/ grid[0].length) * j * 2);
-				width = ((RunClass.jWidth/ grid[0].length) * j * 2) - ((RunClass.jWidth/ grid[0].length) * j * 2);
-				tiles[i*j] = new Rectangle(x, y, width, height);
-				System.out.println(i);
-				System.out.println(j);
-				System.out.println(i*j);
-				System.out.println(tiles[i*j].getBounds());
-			}
-		}		
-	}
+	
 	
 	private void checkZoom() {
 		double startZoom = zoom;
@@ -113,6 +102,5 @@ public class Map {
 		firstRun(field);
 		g2.setColor(Color.RED);
 		g2.drawLine(50, 50, 100, 100);
-		g2.draw(tiles[0]);
  	}
 }
