@@ -24,8 +24,7 @@ import tenbit.game.main.constants.*;
 import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
 
-public class RunClass extends JPanel implements KeyListener, Runnable
-{
+public class RunClass extends JPanel implements Runnable {
 	private boolean[] keys;
 
 	private int x;
@@ -53,6 +52,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	MainMenu menu = new MainMenu();
 	Listeners ml = new Listeners();
 	Listeners mwl = new Listeners();
+	Listeners kl = new Listeners();
 	Map map = new Map();
 	//LoadLogos ll = new LoadLogos();
 
@@ -60,12 +60,13 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	{
 		jWidth = getWidth();
 		jHeight = getHeight();
-		this.addKeyListener(this);
 		new Thread(this).start();
 		HandlerClass hc = new HandlerClass();
+		WheelClass wc = new WheelClass();
+		keyHandler kh = new keyHandler();
 		addMouseListener(hc);
 	    addMouseMotionListener(hc);
-	    WheelClass wc = new WheelClass();
+	    addKeyListener(kh);
 	    addMouseWheelListener(wc);
 	    menu = new MainMenu(true);
 	    menu.checkButtons();
@@ -81,6 +82,11 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 	private void setWheelEvent(MouseWheelEvent mwe1) {
 		wheelEvent1 = mwe1;
 	}
+	private void setKeyEvent(KeyEvent ke1, KeyEvent ke2, KeyEvent ke3) {
+		keyEvent1 = ke1;
+		keyEvent2 = ke2;
+		keyEvent3 = ke3;
+	}
 	
 	public void paint( Graphics window )
 	{
@@ -92,6 +98,7 @@ public class RunClass extends JPanel implements KeyListener, Runnable
         g2d.drawImage(MenuImages.backImg, 0, 0, 800, 600, 0, 0, 1200, 900, null);
         ml = new Listeners(event1, event2, event3, event4, event5);
         mwl = new Listeners(wheelEvent1);
+        kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
 	    //ll.paint(window);
         //menu.paint(window);
         map.paint(window);
@@ -113,17 +120,6 @@ public class RunClass extends JPanel implements KeyListener, Runnable
             }
   	}
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
     private class HandlerClass extends MouseInputAdapter {
     	private MouseEvent me1;
     	private MouseEvent me2;
@@ -177,6 +173,32 @@ public class RunClass extends JPanel implements KeyListener, Runnable
 		private void updateEvent() {
 			setWheelEvent(we1);
 		}
+    }
+    private class keyHandler implements KeyListener {
+    	private KeyEvent ke1;
+    	private KeyEvent ke2;
+    	private KeyEvent ke3;
+    	
+		@Override
+		public void keyPressed(KeyEvent e1) {
+			ke1 = e1;
+			updateKeys();
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e2) {
+			ke2 = e2;
+			updateKeys();
+		}
+		
+		@Override
+		public void keyTyped(KeyEvent e3) {
+			ke3 = e3;
+			updateKeys();
+		}
+    	private void updateKeys() {
+    		setKeyEvent(ke1, ke2, ke3);
+    	}		
     }
 }
 

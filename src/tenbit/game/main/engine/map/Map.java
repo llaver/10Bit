@@ -20,6 +20,7 @@ import tenbit.game.main.constants.MenuImages;
 public class Map {
 	
 	Tiles t = new Tiles();
+	Cursor c = new Cursor();
 	
 	private double zoom = 1;
 	private int mapLength;
@@ -100,7 +101,6 @@ public class Map {
 		g2.draw(r);
 		setGrid(field);
 		firstRun(field);
-		g2.setColor(Color.RED);
-		g2.drawLine(50, 50, 100, 100);
+		c.paint(g2);
  	}
 }
