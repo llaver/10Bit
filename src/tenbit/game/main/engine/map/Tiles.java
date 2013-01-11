@@ -11,7 +11,7 @@ public class Tiles {
 	private boolean tilesSet;
 	private int[][] grid;
 	public static Shape[] tiles;
-
+	
 	public Tiles() {
 		tilesSet = false;
 		tiles = new Shape[4800];

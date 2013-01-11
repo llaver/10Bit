@@ -25,9 +25,8 @@ public class Listeners {
 	public static KeyEvent kPressed;
 	public static KeyEvent kReleased;
 	public static KeyEvent kTyped;
-	public int x;
 	
-	
+	//http://stackoverflow.com/questions/5131547/java-keylistener-in-separate-class
 	
 	public Listeners() {
 		mMoved = null;
@@ -36,6 +35,9 @@ public class Listeners {
 		mPressed = null;
 		mReleased = null;
 		mwEvent = null;
+		kPressed = null;
+		kReleased = null;
+		kTyped = null;
 	}
 	public Listeners(MouseEvent cl, MouseEvent dr, MouseEvent mv, MouseEvent mr, MouseEvent pr) {
 		mClick = cl;

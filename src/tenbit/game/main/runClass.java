@@ -26,6 +26,8 @@ import tenbit.game.main.info.Info;
 
 public class RunClass extends JPanel implements Runnable {
 	private boolean[] keys;
+	
+	//http://stackoverflow.com/questions/5131547/java-keylistener-in-separate-class
 
 	private int x;
 	private int y;

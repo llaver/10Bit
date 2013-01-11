@@ -101,6 +101,7 @@ public class Map {
 		g2.draw(r);
 		setGrid(field);
 		firstRun(field);
+		c = new Cursor(true);
 		c.paint(g2);
  	}
 }
