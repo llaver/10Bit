@@ -21,10 +21,12 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 import tenbit.game.main.constants.*;
+import tenbit.game.main.engine.map.Cursor;
 import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
+import tenbit.game.main.info.MousePos;
 
-public class RunClass extends JPanel implements Runnable {
+public class RunClass extends JPanel implements Runnable, Observer {
 	private boolean[] keys;
 	
 	//http://stackoverflow.com/questions/5131547/java-keylistener-in-separate-class
@@ -56,6 +58,8 @@ public class RunClass extends JPanel implements Runnable {
 	Listeners mwl = new Listeners();
 	Listeners kl = new Listeners();
 	Map map = new Map();
+	Setup setupInstance = new Setup();
+	Setup setup;
 	//LoadLogos ll = new LoadLogos();
 
 	public RunClass(JFrame par) 
@@ -64,6 +68,14 @@ public class RunClass extends JPanel implements Runnable {
 		jHeight = getHeight();
 		new Thread(this).start();
 		HandlerClass hc = new HandlerClass();
+		
+		setup = new Setup();
+		setup.addObserver(this);
+		this.addKeyListener(setup);
+		this.addMouseMotionListener(setup);
+		this.addMouseListener(setup);
+		addObservers();
+		
 		WheelClass wc = new WheelClass();
 		keyHandler kh = new keyHandler();
 		addMouseListener(hc);
@@ -88,6 +100,10 @@ public class RunClass extends JPanel implements Runnable {
 		keyEvent1 = ke1;
 		keyEvent2 = ke2;
 		keyEvent3 = ke3;
+	}
+	private void addObservers() {
+		setup.addObserver(new MousePos());
+		setup.addObserver(new Cursor(true));
 	}
 	
 	public void paint( Graphics window )
@@ -202,5 +218,17 @@ public class RunClass extends JPanel implements Runnable {
     		setKeyEvent(ke1, ke2, ke3);
     	}		
     }
+
+	@Override
+	public void updateKey(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateMouse(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

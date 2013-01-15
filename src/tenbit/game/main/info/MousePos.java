@@ -17,11 +17,14 @@ import javax.swing.event.MouseInputListener;
 import java.awt.Component;
 import java.awt.Font;
 
+import tenbit.game.main.Observable;
+import tenbit.game.main.Observer;
+import tenbit.game.main.Setup;
 import tenbit.game.main.constants.*;
 import tenbit.game.main.window.*;
 import tenbit.game.main.constants.Listeners;
 
-public class MousePos extends MouseInputAdapter {
+public class MousePos extends MouseInputAdapter implements Observer {
 	private MouseXY mMove = new MouseXY();
 	private MouseXY mDrag = new MouseXY();
 	private boolean isOn;
@@ -43,10 +46,11 @@ public class MousePos extends MouseInputAdapter {
 	}
 	public MousePos(boolean on) {
 		isOn = on;
-		mousePressed(press);
+		//setupInstance.addObserver(this);
+		/*mousePressed(press);
 		mouseDragged(drag);
 		mouseMoved(move);
-		mouseReleased(release);
+		mouseReleased(release);*/
 	} 
 	public void paint(Graphics window) {
 		Graphics g = window;
@@ -64,9 +68,9 @@ public class MousePos extends MouseInputAdapter {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if(e != null) {
-			mDrag = new MouseXY(e);
-			x = mDrag.getX();
-			y = mDrag.getY();
+			//mDrag = new MouseXY(e);
+			x = e.getX();
+			y = e.getY();
 		}
 	}
 	@Override
@@ -99,5 +103,13 @@ public class MousePos extends MouseInputAdapter {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		isPressed = false;
+	}
+	@Override
+	public void updateKey(KeyEvent keyEvent) {
+		
+	}
+	@Override
+	public void updateMouse(MouseEvent mouseEvent) {
+		mouseMoved(mouseEvent);
 	}
 }
