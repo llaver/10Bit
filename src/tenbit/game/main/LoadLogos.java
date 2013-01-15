@@ -28,8 +28,17 @@ import tenbit.game.main.info.Info;
 public class LoadLogos {
 	private boolean hasRun;
 	
-	public LoadLogos() {
+	File f = new File("10Bit/src/tenbit/Sprites/JPG or PNG/Credits/");
+	File f1 = new File(f, "BitBlit Logo/Final BitBlit Logo.png");
+	File f2 = new File(f, "10bit Logo/Final 10bit Logo.png");
+	
+	private BufferedImage bbLogo;
+	private BufferedImage tenbLogo;
+	
+	public LoadLogos() throws IOException {
 		hasRun = false;
+		bbLogo = ImageIO.read(f1);
+		tenbLogo = ImageIO.read(f2);
 	}
 	
 	private void loadImage(Graphics g, BufferedImage b) {
@@ -41,7 +50,7 @@ public class LoadLogos {
 			if(hasRun == false) {
 				//loadImage(g, bbLogo);
 				Thread.sleep(5000);
-				//loadImage(g, 10bLogo);
+				//loadImage(g, tenbLogo);
 				hasRun = true;
 			}
 		}
