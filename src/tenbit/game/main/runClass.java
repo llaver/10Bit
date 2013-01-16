@@ -103,7 +103,8 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	}
 	private void addObservers() {
 		setup.addObserver(new MousePos());
-		setup.addObserver(new Cursor(true));
+		setup.addObserver(new Map());
+		setup.addObserver(new Cursor());
 	}
 	
 	public void paint( Graphics window )

@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
@@ -13,11 +15,12 @@ import java.awt.geom.Area;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import tenbit.game.main.Observer;
 import tenbit.game.main.RunClass;
 import tenbit.game.main.constants.Listeners;
 import tenbit.game.main.constants.MenuImages;
 
-public class Map {
+public class Map implements Observer {
 	
 	Tiles t = new Tiles();
 	Cursor c = new Cursor();
@@ -68,29 +71,6 @@ public class Map {
 		}
 	}
 	
-	
-	private void checkZoom() {
-		double startZoom = zoom;
-		int zoomRoom = (int) ((2 - zoom) * 10);	
-		if(clicks != 0 && scroll) {
-			if(clicks < 0) {
-				if(clicks + zoomRoom <= 0) {
-					zoom = 2.0;
-				} else {
-					zoom = zoom - ((double)(clicks - zoomRoom) / 10);
-				}
-			} else if(clicks > 0) {
-				if(clicks + zoomRoom >= 20) {
-					zoom = 0;
-				} else {
-				zoom = zoom - ((double)(clicks + zoomRoom) / 10);
-				}				
-			}
-		}
-		clicks = 0;
-		scroll = false;
-	}
-	
 	public void paint(Graphics g) {
 		Rectangle r = new Rectangle(0, 0, RunClass.jWidth, (RunClass.jHeight / 4 * 3) - 5);
 		Area a = new Area(r);
@@ -101,7 +81,17 @@ public class Map {
 		g2.draw(r);
 		setGrid(field);
 		firstRun(field);
-		c = new Cursor(true);
+		c = new Cursor();
 		c.paint(g2);
  	}
+	@Override
+	public void updateKey(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateMouse(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }

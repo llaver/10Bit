@@ -15,7 +15,7 @@ public class Cursor implements Observer {
 	//http://stackoverflow.com/questions/5131547/java-keylistener-in-separate-class
 	
 	private Shape[] tiles = Tiles.tiles;
-	private int currentTile = 0;
+	private int currentTile;
 	private boolean isRunning;
 	
 	KeyEvent kp = Listeners.kPressed;
@@ -23,9 +23,10 @@ public class Cursor implements Observer {
 	KeyEvent kt = Listeners.kTyped;
 	
 	public Cursor() {
-		
+		currentTile = 0;
 	}
 	public Cursor(boolean run) {
+		currentTile = 0;
 		isRunning = run;
 	}
 	public void paint(Graphics2D g2d) {
