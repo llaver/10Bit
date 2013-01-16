@@ -28,29 +28,26 @@ import tenbit.game.main.info.Info;
 public class LoadLogos {
 	private boolean hasRun;
 	
-	File f = new File("10Bit/src/tenbit/Sprites/JPG or PNG/Credits/");
-	File f1 = new File(f, "BitBlit Logo/Final BitBlit Logo.png");
-	File f2 = new File(f, "10bit Logo/Final 10bit Logo.png");
-	
-	private BufferedImage bbLogo;
-	private BufferedImage tenbLogo;
-	
-	public LoadLogos() throws IOException {
+	public LoadLogos() {
 		hasRun = false;
-		bbLogo = ImageIO.read(f1);
-		tenbLogo = ImageIO.read(f2);
 	}
 	
 	private void loadImage(Graphics g, BufferedImage b) {
-		
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.drawImage(b,50,50,null);
 	}
 	
 	public void paint(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
 		try {
 			if(hasRun == false) {
-				//loadImage(g, bbLogo);
-				Thread.sleep(5000);
-				//loadImage(g, tenbLogo);
+				//loadImage(g, MenuImages.bbLogo);
+				g2d.drawImage(MenuImages.bbLogo,50,50,null);
+				System.out.println("1st loaded");
+				Thread.sleep(3000);
+				//loadImage(g, MenuImages.tbLogo);
+				System.out.println("2nd loaded");
+				Thread.sleep(3000);
 				hasRun = true;
 			}
 		}
