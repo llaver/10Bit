@@ -74,6 +74,7 @@ public class MainMenu extends MouseInputAdapter {
 		try {
 			MenuImages mi = new MenuImages();
 		} catch (IOException e) {
+			e.printStackTrace();
 		} 
 	}
 	public MainMenu(boolean start) {

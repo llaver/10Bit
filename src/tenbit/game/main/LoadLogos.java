@@ -27,9 +27,11 @@ import tenbit.game.main.info.Info;
 
 public class LoadLogos {
 	private boolean hasRun;
+	private boolean hasTwice;
 	
 	public LoadLogos() {
 		hasRun = false;
+		hasTwice = false;
 	}
 	
 	private void loadImage(Graphics g, BufferedImage b) {
@@ -38,18 +40,20 @@ public class LoadLogos {
 	}
 	
 	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+		//Graphics2D g2d = (Graphics2D) g;
 		try {
-			if(hasRun == false) {
+			if(hasRun == true && hasTwice == false) {
 				//loadImage(g, MenuImages.bbLogo);
-				g2d.drawImage(MenuImages.bbLogo,50,50,null);
+				g.drawImage(MenuImages.bbLogo, 50, 50, null);
 				System.out.println("1st loaded");
 				Thread.sleep(3000);
 				//loadImage(g, MenuImages.tbLogo);
+				g.drawImage(MenuImages.tbLogo, 50, 50, null);
 				System.out.println("2nd loaded");
 				Thread.sleep(3000);
-				hasRun = true;
+				hasTwice = true;
 			}
+			hasRun = true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();

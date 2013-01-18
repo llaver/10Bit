@@ -35,6 +35,7 @@ public class Map implements Observer {
 	private boolean hasRun = false;
 	private int clicks = 0;
 	private int lol = 500;
+	public static int currentTile = 0;
 
 	public Map() {
 		mapLength = 80;
@@ -58,16 +59,18 @@ public class Map implements Observer {
 			t.setGrid(grid);
 			t.setTiles(g2d);
 			tiles = Tiles.tiles;
+			c = new Cursor(true);
+			RunClass.setup.addObserver(c);
 			hasRun = true;
 		}
 	}
 	private void setGrid(Graphics2D g2d) {
 		g2d.setColor(Color.GREEN);
 		for(int i = 0; i <= grid[0].length / 2; i++) {
-			g2d.drawLine((RunClass.jWidth/ grid[0].length) * i * 2, 0, (RunClass.jWidth/ grid[0].length) * i * 2, RunClass.jHeight);
+			g2d.drawLine((RunClass.jWidth/ grid[0].length) * i * 2, 0, ((RunClass.jWidth/ grid[0].length) * i * 2), RunClass.jHeight);
 		}
 		for (int j = 0; j <= grid.length / 2; j++) {
-			g2d.drawLine(0, (RunClass.jHeight/ grid.length) * j * 4, RunClass.jWidth, (RunClass.jHeight/ grid.length) * j * 4);
+			g2d.drawLine(0, (RunClass.jHeight/ grid.length) * j * 4, RunClass.jWidth - 13, (RunClass.jHeight/ grid.length) * j * 4);
 		}
 	}
 	
@@ -86,8 +89,19 @@ public class Map implements Observer {
  	}
 	@Override
 	public void updateKey(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
+		if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT && currentTile > 1) {
+			currentTile = currentTile - 1;
+			System.out.println("lol" + currentTile);
+		} else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT && currentTile < 449) {
+			currentTile = currentTile + 1;
+			System.out.println("lol" + currentTile);
+		} else if(keyEvent.getKeyCode() == KeyEvent.VK_UP && currentTile > 30) {
+			currentTile = currentTile - 30;
+			System.out.println("lol" + currentTile);
+		} else if(keyEvent.getKeyCode() == KeyEvent.VK_DOWN && currentTile < 420) {
+			currentTile = currentTile + 30;
+			System.out.println("lol" + currentTile);
+		}
 	}
 	@Override
 	public void updateMouse(MouseEvent mouseEvent) {

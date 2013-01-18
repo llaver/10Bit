@@ -24,7 +24,7 @@ public class Setup implements KeyListener, MouseListener, MouseMotionListener, O
    }
 
    public void keyReleased(KeyEvent e) {
-	   notifyObserversKey(e);
+	   //notifyObserversKey(e);
    }
    public void keyTyped(KeyEvent e) {
 	   notifyObserversKey(e);
