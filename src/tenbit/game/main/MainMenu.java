@@ -148,7 +148,7 @@ public class MainMenu extends MouseInputAdapter {
 			//e.printStackTrace();
 		}
 	}
-	private void paintButtons(Graphics2D g2d) {
+	protected void paintButtons(Graphics2D g2d) {
 		g2d.drawImage(ngImages[1], 245, 160, null);
 		g2d.drawImage(lgImages[1], 245, 245, null);
 		g2d.drawImage(opImages[1], 245, 330, null);
