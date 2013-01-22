@@ -14,8 +14,7 @@ public class Setup implements KeyListener, MouseListener, MouseMotionListener, O
 {
    private ArrayList<Observer> obsList;
 
-   public Setup()
-   {
+   public Setup() {
       obsList = new ArrayList();
    }
 
