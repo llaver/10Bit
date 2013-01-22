@@ -96,13 +96,13 @@ public class MainMenu extends MouseInputAdapter {
 		y = MousePos.y;
 		Graphics g = window;
 		Graphics2D g2 = (Graphics2D) g;
-		//g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
+		g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
 		mousepos = new Info(true, 1);
 	    mousepos.paint(window);
-    	//g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
-		//g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
+    	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
+		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
 	    g2.drawString(new Boolean(RunClass.isPressed).toString(), 110, 15);
-		//paintButtons(g2);
+		paintButtons(g2);
 	}
 	
 	public void checkButtons() {

@@ -26,29 +26,32 @@ import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
 
 public class LoadLogos {
-	private boolean hasRun;
+	private int hasRun;
 	
 	public LoadLogos() {
-		hasRun = false;
+		hasRun = 0;
 	}
 	
 	private void loadImage(Graphics g, BufferedImage b) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawImage(b,50,50,null);
+		g.drawImage(b,50,50,null);
+		System.out.println("loadImage reached");
 	}
 	
 	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
 		try {
-			if(hasRun == false) {
-				//loadImage(g, MenuImages.bbLogo);
-				g2d.drawImage(MenuImages.bbLogo,50,50,null);
+			if(hasRun < 2) {
+				loadImage(g, MenuImages.bbLogo);
+				g.drawImage(MenuImages.bbLogo,50,50,null);
 				System.out.println("1st loaded");
+				
 				Thread.sleep(3000);
-				//loadImage(g, MenuImages.tbLogo);
+				
+				loadImage(g, MenuImages.tbLogo);
 				System.out.println("2nd loaded");
+				
 				Thread.sleep(3000);
-				hasRun = true;
+				hasRun++;
 			}
 		}
 		catch(Exception e) {
