@@ -29,58 +29,21 @@ import tenbit.game.main.info.Info;
 import tenbit.game.main.info.MousePos;
 import tenbit.game.main.window.*;
 
-public class MenuKeyboard extends MainMenu {
+public class MenuKeyboard implements Observer {
 	
-	//Leaderboard
-	private File[] lbButtons = new File[4];
-	private BufferedImage[] lbImages = new BufferedImage[4];
-	//Load Game
-	private File[] lgButtons = new File[4];
-	private BufferedImage[] lgImages = new BufferedImage[4];
-	//New Game
-	private File[] ngButtons = new File[4];
-	private BufferedImage[] ngImages = new BufferedImage[4];
-	//Options
-	private File[] opButtons = new File[4];
-	private BufferedImage[] opImages = new BufferedImage[4];
-	//Quit Game
-	private File[] qgButtons = new File[4];
-	private BufferedImage[] qgImages = new BufferedImage[4];
-	
-	private int width = RunClass.jWidth;
-	private int height = RunClass.jHeight;
-	
-	private Map<File, Set<File>> titledButtons = MenuImages.allTitleButtons;
-	private Map<File, Set<File>> titledImages = MenuImages.allTitleButtons;
-		
+	KeyEvent kp = Listeners.kPressed;
+	KeyEvent kr = Listeners.kReleased;
+	KeyEvent kt = Listeners.kTyped;	
 	
 	public void keyPressed(KeyEvent e) {
 		
-	    int key = e.getKeyCode();
+		
 	    
-	    int picNum = 0;
-	    
-	    while(key != KeyEvent.VK_ENTER){
-	     if(picNum>4 || picNum<0){
-	    	 picNum = 0;
-	     }
-	     else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT) {
-	    	 picNum--;
-	     }
-	     else if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
-	    	 picNum++;
-	     }
-	    }
 	}
-	public void paint(Graphics window) {
-		width = RunClass.jWidth;
-		height = RunClass.jHeight;
-		Graphics g = window;
-		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
-    	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
-		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
-	    g2.drawString(new Boolean(RunClass.isPressed).toString(), 110, 15);
-		paintButtons(g2);
+	
+	@Override
+	public void updateKey(KeyEvent keyEvent) {
+		
 	}
+	
 }
