@@ -31,17 +31,12 @@ public class Cursor implements Observer {
 	}
 	public void paint(Graphics2D g2d) {
 		g2d.setColor(Color.RED);
-		g2d.draw(tiles[currentTile]);
+		g2d.draw(tiles[Map.currentTile]);
 	}
 	
 	@Override
 	public void updateKey(KeyEvent keyEvent) {
-		if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
-			currentTile = currentTile - 1;
-		} else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("lol" + currentTile);
-			currentTile = currentTile + 1;
-		}
+		
 	}
 	@Override
 	public void updateMouse(MouseEvent mouseEvent) {

@@ -59,8 +59,8 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	Listeners kl = new Listeners();
 	Map map = new Map();
 	Setup setupInstance = new Setup();
-	Setup setup;
-	//LoadLogos ll = new LoadLogos();
+	public static Setup setup;
+	LoadLogos ll = new LoadLogos();
 
 	public RunClass(JFrame par) 
 	{
@@ -104,7 +104,7 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	private void addObservers() {
 		setup.addObserver(new MousePos());
 		setup.addObserver(new Map());
-		setup.addObserver(new Cursor());
+		//setup.addObserver(new Cursor());
 	}
 	
 	public void paint( Graphics window )
@@ -118,11 +118,22 @@ public class RunClass extends JPanel implements Runnable, Observer {
         ml = new Listeners(event1, event2, event3, event4, event5);
         mwl = new Listeners(wheelEvent1);
         kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
+<<<<<<< HEAD
         //ll.paint(window);
         //menu.paint(window);
         map.paint(window);
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
+=======
+	    //ll.paint(window);
+        //menu.paint(window); 
+        map.paint(window);
+        mousepos = new Info(true, 1);
+	    mousepos.paint(window); 
+	    //window.drawImage(MenuImages.bbLogo, 50, 50, null);
+		//System.out.println("1st loaded");
+	    //window.drawImage(MenuImages.tbLogo, 0, 0, null);
+>>>>>>> 9be3996cb1a6414ef8e9723b853918aec19aa6dd
 	}
         @Override
         public void run()
