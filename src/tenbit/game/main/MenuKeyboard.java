@@ -29,20 +29,40 @@ import tenbit.game.main.info.Info;
 import tenbit.game.main.info.MousePos;
 import tenbit.game.main.window.*;
 
-public class MenuKeyboard implements Observer {
+public class MenuKeyboard implements KeyListener, Observer {
 	
+	private ArrayList<Observer> obsList;
 	KeyEvent kp = Listeners.kPressed;
 	KeyEvent kr = Listeners.kReleased;
 	KeyEvent kt = Listeners.kTyped;	
 	
 	public void keyPressed(KeyEvent e) {
 		
-		
+		updateKey(e);
 	    
 	}
 	
 	@Override
 	public void updateKey(KeyEvent keyEvent) {
+		
+		for(Observer obs : obsList){
+			
+		}
+		
+	}
+
+	@Override
+	public void updateMouse(MouseEvent mouseEvent) {
+	}
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+	
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		
 		
 	}
 	
