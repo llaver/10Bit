@@ -29,7 +29,7 @@ import tenbit.game.main.info.Info;
 import tenbit.game.main.info.MousePos;
 import tenbit.game.main.window.*;
 
-public class MenuKeyboard implements KeyListener, Observer {
+public class MenuKeyboard implements KeyListener, Observer, Observable {
 	
 	private ArrayList<Observer> obsList;
 	KeyEvent kp = Listeners.kPressed;
@@ -37,32 +37,30 @@ public class MenuKeyboard implements KeyListener, Observer {
 	KeyEvent kt = Listeners.kTyped;	
 	
 	public void keyPressed(KeyEvent e) {
-		
 		updateKey(e);
-	    
 	}
 	
 	@Override
-	public void updateKey(KeyEvent keyEvent) {
-		
+	public void notifyObserversKey(KeyEvent keyEvent) {
 		for(Observer obs : obsList){
-			
+			obs.updateKey(keyEvent);
 		}
-		
 	}
 
 	@Override
-	public void updateMouse(MouseEvent mouseEvent) {
+	public void keyReleased(KeyEvent arg0){
 	}
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-	
-		
-	}
-
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		
+	}
+	@Override
+	public void notifyObserversMouse(MouseEvent mouseEvent) {
+	}
+	@Override
+	public void updateKey(KeyEvent keyEvent) {
+	}
+	@Override
+	public void updateMouse(MouseEvent mouseEvent) {
 		
 	}
 	
