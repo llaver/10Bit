@@ -24,21 +24,14 @@ import javax.swing.event.MouseInputListener;
 import tenbit.game.main.constants.*;
 import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
-
+/*
 public class LoadLogos {
-<<<<<<< HEAD
-	private int hasRun;
-	
-	public LoadLogos() {
-		hasRun = 0;
-=======
 	private boolean hasRun;
 	private boolean hasTwice;
 	
 	public LoadLogos() {
 		hasRun = false;
 		hasTwice = false;
->>>>>>> 9be3996cb1a6414ef8e9723b853918aec19aa6dd
 	}
 	
 	private void loadImage(Graphics g, BufferedImage b) {
@@ -48,36 +41,27 @@ public class LoadLogos {
 	}
 	
 	public void paint(Graphics g) {
-<<<<<<< HEAD
 		try {
 			if(hasRun < 2) {
 				loadImage(g, MenuImages.bbLogo);
 				g.drawImage(MenuImages.bbLogo,50,50,null);
-=======
 		//Graphics2D g2d = (Graphics2D) g;
 		try {
 			if(hasRun == true && hasTwice == false) {
 				//loadImage(g, MenuImages.bbLogo);
 				g.drawImage(MenuImages.bbLogo, 50, 50, null);
->>>>>>> 9be3996cb1a6414ef8e9723b853918aec19aa6dd
 				System.out.println("1st loaded");
 				
 				Thread.sleep(3000);
-<<<<<<< HEAD
 				
 				loadImage(g, MenuImages.tbLogo);
-=======
 				//loadImage(g, MenuImages.tbLogo);
 				g.drawImage(MenuImages.tbLogo, 50, 50, null);
->>>>>>> 9be3996cb1a6414ef8e9723b853918aec19aa6dd
 				System.out.println("2nd loaded");
 				
 				Thread.sleep(3000);
-<<<<<<< HEAD
 				hasRun++;
-=======
 				hasTwice = true;
->>>>>>> 9be3996cb1a6414ef8e9723b853918aec19aa6dd
 			}
 			hasRun = true;
 		}
@@ -85,5 +69,5 @@ public class LoadLogos {
 			e.printStackTrace();
 		}
 	}
-}
+}*/
 //http://www.java2s.com/Code/Java/2D-Graphics-GUI/Fadeoutanimageimagegraduallygetmoretransparentuntilitiscompletelyinvisible.htm

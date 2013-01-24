@@ -60,7 +60,7 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	Map map = new Map();
 	Setup setupInstance = new Setup();
 	public static Setup setup;
-	LoadLogos ll = new LoadLogos();
+	//LoadLogos ll = new LoadLogos();
 
 	public RunClass(JFrame par) 
 	{
