@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 
 public final class MenuImages {
 	
-	public final File sprites = new File("src/tenbit/Sprites/JPG or PNG/");	
-	public final File buttons = new File("src/tenbit/Sprites/JPG or PNG/Main Menu/Titled Buttons/");
+	public final File sprites = new File("10bit/src/tenbit/Sprites/JPG or PNG/");	
+	public final File buttons = new File("10bit/src/tenbit/Sprites/JPG or PNG/Main Menu/Titled Buttons/");
 	public final File logos = new File("bin/tenbit/Sprites/JPG or PNG/Credits/");
 	
 	private final File background = new File(sprites, "Main Menu/Menu Background.jpg");
