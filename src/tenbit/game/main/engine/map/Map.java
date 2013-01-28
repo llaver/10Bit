@@ -24,6 +24,7 @@ public class Map implements Observer {
 	
 	Tiles t = new Tiles();
 	Cursor c = new Cursor();
+	Terrain terrain;
 	
 	private double zoom = 1;
 	private int mapLength;
@@ -45,7 +46,7 @@ public class Map implements Observer {
 	private void createMap() {
 		grid = new int[mapLength][mapWidth];
 		tiles = new Shape[4800];
-		//Terrain terrain = new Terrain();
+		terrain = new Terrain();
 		//layout = new Layout();
 		//layout = new Layout(terrain);
 		
@@ -81,21 +82,25 @@ public class Map implements Observer {
 		Graphics2D field = (Graphics2D) g2.create(0, 0, RunClass.jWidth, (RunClass.jHeight / 4 * 3) - 5);
 		field.setColor(Color.BLACK);
 		field.fill(field.getClip());
+		firstRun(field);
 		g2.draw(r);
 		setGrid(field);
-		firstRun(field);
 		c = new Cursor();
 		c.paint(g2);
+		for(int i = 0; i < tiles.length; i++) {
+			g2.drawImage(Terrain.terrainChoice, (int) tiles[i].getBounds2D().getX(), (int) tiles[i].getBounds2D().getY(), (int) tiles[i].getBounds2D().getMaxX(), (int) tiles[i].getBounds2D().getMaxY(), 0, 0, (int) Terrain.terrainChoice.getWidth(), (int) Terrain.terrainChoice.getHeight(), null);
+		}
+		terrain.paintTerrain(g);
  	}
 	@Override
 	public void updateKey(KeyEvent keyEvent) {
-		if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT && currentTile > 1) {
+		if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT && currentTile > 0 && currentTile != 30 && currentTile != 60 && currentTile != 90 && currentTile != 120 && currentTile != 150 && currentTile != 180 && currentTile != 210 && currentTile != 240 && currentTile != 270 && currentTile != 300 && currentTile != 330 && currentTile != 360 && currentTile != 390 && currentTile != 420) {
 			currentTile = currentTile - 1;
 			System.out.println("lol" + currentTile);
-		} else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT && currentTile < 449) {
+		} else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT && currentTile < 449 && currentTile != 29 && currentTile != 59 && currentTile != 89 && currentTile != 119 && currentTile != 149 && currentTile != 179 && currentTile != 209 && currentTile != 239 && currentTile != 269 && currentTile != 299 && currentTile != 329 && currentTile != 359 && currentTile != 389 && currentTile != 419 && currentTile != 449) {
 			currentTile = currentTile + 1;
 			System.out.println("lol" + currentTile);
-		} else if(keyEvent.getKeyCode() == KeyEvent.VK_UP && currentTile > 30) {
+		} else if(keyEvent.getKeyCode() == KeyEvent.VK_UP && currentTile > 29) {
 			currentTile = currentTile - 30;
 			System.out.println("lol" + currentTile);
 		} else if(keyEvent.getKeyCode() == KeyEvent.VK_DOWN && currentTile < 420) {

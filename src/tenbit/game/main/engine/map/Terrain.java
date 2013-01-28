@@ -1,6 +1,7 @@
 package tenbit.game.main.engine.map;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import tenbit.game.main.constants.MapImages;
@@ -10,7 +11,7 @@ public class Terrain {
 	private int terrainType;
 	private boolean isRandom = false;
 	
-	private BufferedImage terrainChoice;
+	public static BufferedImage terrainChoice;
 	private BufferedImage rock = MapImages.rock;
 	private BufferedImage grass = MapImages.grass;
 	private BufferedImage snow = MapImages.snow;
@@ -45,7 +46,7 @@ public class Terrain {
 			isRandom = false;
 		}
 	}
-	private void paintTerrain(Graphics g) {
-		
+	public void paintTerrain(Graphics g) {
+		g.drawImage(terrainChoice, 0, 0, null);
 	}
 }
