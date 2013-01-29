@@ -23,8 +23,8 @@ public class SystemLogger {
 			else {
 				System.out.println("Uh-oh :(");
 			}
-			
-			new File(userHome).mkdirs();
+			System.out.println(userHome + "Reduc/");
+			//new File(userHome + "").mkdirs();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -40,5 +40,7 @@ public class SystemLogger {
 		
 	}
 	
-	
+	public static void main(String[] args) {
+		SystemLogger.createNewDir();
+	}
 }
