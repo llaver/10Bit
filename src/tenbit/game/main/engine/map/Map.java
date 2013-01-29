@@ -21,11 +21,11 @@ import tenbit.game.main.constants.Listeners;
 import tenbit.game.main.constants.MenuImages;
 
 public class Map implements Observer {
-	
+
 	Tiles t = new Tiles();
 	Cursor c = new Cursor();
 	Terrain terrain;
-	
+
 	private double zoom = 1;
 	private int mapLength;
 	private int mapWidth;
@@ -34,6 +34,7 @@ public class Map implements Observer {
 	private Layout layout;
 	private boolean scroll = false;
 	private boolean hasRun = false;
+	private boolean hasRunTwice = false;
 	private int clicks = 0;
 	private int lol = 500;
 	public static int currentTile = 0;
@@ -47,9 +48,9 @@ public class Map implements Observer {
 		grid = new int[mapLength][mapWidth];
 		tiles = new Shape[4800];
 		terrain = new Terrain();
-		//layout = new Layout();
+		layout = new Layout();
 		//layout = new Layout(terrain);
-		
+
 	}
 	public void setWheelInfo(boolean s, int c) {
 		scroll = s;
@@ -65,6 +66,9 @@ public class Map implements Observer {
 			hasRun = true;
 		}
 	}
+	private void secondRun() {
+		
+	}
 	private void setGrid(Graphics2D g2d) {
 		g2d.setColor(Color.GREEN);
 		for(int i = 0; i <= grid[0].length / 2; i++) {
@@ -74,7 +78,10 @@ public class Map implements Observer {
 			g2d.drawLine(0, (RunClass.jHeight/ grid.length) * j * 4, RunClass.jWidth - 13, (RunClass.jHeight/ grid.length) * j * 4);
 		}
 	}
-	
+	private void paintItems(Graphics2D g2d) {
+		
+	}
+
 	public void paint(Graphics g) {
 		Rectangle r = new Rectangle(0, 0, RunClass.jWidth, (RunClass.jHeight / 4 * 3) - 5);
 		Area a = new Area(r);
@@ -87,11 +94,11 @@ public class Map implements Observer {
 		setGrid(field);
 		c = new Cursor();
 		c.paint(g2);
-		for(int i = 0; i < tiles.length; i++) {
-			//g2.drawImage(Terrain.terrainChoice, (int) tiles[i].getBounds2D().getX(), (int) tiles[i].getBounds2D().getY(), (int) tiles[i].getBounds2D().getMaxX(), (int) tiles[i].getBounds2D().getMaxY(), 0, 0, (int) Terrain.terrainChoice.getWidth(), (int) Terrain.terrainChoice.getHeight(), null);
-		}
+
+		//g.drawImage(Terrain.terrainChoice, (int) tiles[i].getBounds2D().getX(), (int) tiles[i].getBounds2D().getY(), (int) tiles[i].getBounds2D().getMaxX(), (int) tiles[i].getBounds2D().getMaxY(), 0, 0, (int) Terrain.terrainChoice.getWidth(), (int) Terrain.terrainChoice.getHeight(), null);
+
 		terrain.paintTerrain(g);
- 	}
+	}
 	@Override
 	public void updateKey(KeyEvent keyEvent) {
 		if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT && currentTile > 0 && currentTile != 30 && currentTile != 60 && currentTile != 90 && currentTile != 120 && currentTile != 150 && currentTile != 180 && currentTile != 210 && currentTile != 240 && currentTile != 270 && currentTile != 300 && currentTile != 330 && currentTile != 360 && currentTile != 390 && currentTile != 420) {
@@ -111,6 +118,6 @@ public class Map implements Observer {
 	@Override
 	public void updateMouse(MouseEvent mouseEvent) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
