@@ -33,16 +33,31 @@ import tenbit.game.main.constants.*;
 import tenbit.game.main.info.Info;
 import tenbit.game.main.window.*;
 
-public class MenuKeyboard implements KeyListener, Observer, Observable {
+public class MenuKeyboard extends MainMenu implements KeyListener, Observer, Observable {
 	
 	private ArrayList<Observer> obsList;
-	private int width;
-	private int height;
 	private int currentButton;
 	private boolean isRunning;
 	KeyEvent kp = Listeners.kPressed;
 	KeyEvent kr = Listeners.kReleased;
 	KeyEvent kt = Listeners.kTyped;
+	//Leaderboard
+	private File[] lbButtons = new File[4];
+	private BufferedImage[] lbImages = new BufferedImage[4];
+	//Load Game
+	private File[] lgButtons = new File[4];
+	private BufferedImage[] lgImages = new BufferedImage[4];
+	//New Game
+	private File[] ngButtons = new File[4];
+	private BufferedImage[] ngImages = new BufferedImage[4];
+	//Options
+	private File[] opButtons = new File[4];
+	private BufferedImage[] opImages = new BufferedImage[4];
+	//Quit Game
+	private File[] qgButtons = new File[4];
+	private BufferedImage[] qgImages = new BufferedImage[4];
+	private Map<File, Set<File>> titledButtons = MenuImages.allTitleButtons;
+	private Map<File, Set<File>> titledImages = MenuImages.allTitleButtons;
 	
 	public MenuKeyboard(){
 		currentButton = 0;
@@ -57,13 +72,18 @@ public class MenuKeyboard implements KeyListener, Observer, Observable {
 		updateKey(e);
 	}
 	
-	public void paint(Graphics2D g2d){
+	public void paintButtons(Graphics2D g2d){
 		
-		width = RunClass.jWidth;
-		height = RunClass.jHeight;
-		
-		g2d.drawImage(MenuImages.backImg, 0, 0, width, height, 0, 0, 1200, 800, null);
-		
+		if(currentButton==0)
+			g2d.drawImage(ngImages[0], 245, 160, null);
+		else if(currentButton==1)
+			g2d.drawImage(lgImages[0], 245, 245, null);
+		else if(currentButton==2)
+			g2d.drawImage(opImages[0], 245, 330, null);
+		else if(currentButton==3)
+			g2d.drawImage(lbImages[0], 245, 415, null);
+		else if(currentButton==4)
+			g2d.drawImage(qgImages[0], 245, 500, null);
 	}
 	
 	@Override
