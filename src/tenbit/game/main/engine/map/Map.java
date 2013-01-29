@@ -88,7 +88,7 @@ public class Map implements Observer {
 		c = new Cursor();
 		c.paint(g2);
 		for(int i = 0; i < tiles.length; i++) {
-			g2.drawImage(Terrain.terrainChoice, (int) tiles[i].getBounds2D().getX(), (int) tiles[i].getBounds2D().getY(), (int) tiles[i].getBounds2D().getMaxX(), (int) tiles[i].getBounds2D().getMaxY(), 0, 0, (int) Terrain.terrainChoice.getWidth(), (int) Terrain.terrainChoice.getHeight(), null);
+			//g2.drawImage(Terrain.terrainChoice, (int) tiles[i].getBounds2D().getX(), (int) tiles[i].getBounds2D().getY(), (int) tiles[i].getBounds2D().getMaxX(), (int) tiles[i].getBounds2D().getMaxY(), 0, 0, (int) Terrain.terrainChoice.getWidth(), (int) Terrain.terrainChoice.getHeight(), null);
 		}
 		terrain.paintTerrain(g);
  	}
