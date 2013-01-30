@@ -24,50 +24,57 @@ import javax.swing.event.MouseInputListener;
 import tenbit.game.main.constants.*;
 import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
-/*
+
 public class LoadLogos {
 	private boolean hasRun;
 	private boolean hasTwice;
-	
+	private boolean hasThree;
+
+	//http://www.java2s.com/Code/Java/2D-Graphics-GUI/Fadeoutanimageimagegraduallygetmoretransparentuntilitiscompletelyinvisible.htm
+
 	public LoadLogos() {
 		hasRun = false;
 		hasTwice = false;
+		hasThree = false;
 	}
-	
+
 	private void loadImage(Graphics g, BufferedImage b) {
 		Graphics2D g2d = (Graphics2D) g;
 		g.drawImage(b,50,50,null);
-		System.out.println("loadImage reached");
 	}
-	
+
 	public void paint(Graphics g) {
-		try {
-			if(hasRun < 2) {
-				loadImage(g, MenuImages.bbLogo);
-				g.drawImage(MenuImages.bbLogo,50,50,null);
-		//Graphics2D g2d = (Graphics2D) g;
-		try {
-			if(hasRun == true && hasTwice == false) {
-				//loadImage(g, MenuImages.bbLogo);
-				g.drawImage(MenuImages.bbLogo, 50, 50, null);
-				System.out.println("1st loaded");
-				
+		if(hasRun && !hasTwice) {
+			loadImage(g, MenuImages.bbLogo);
+			g.drawImage(MenuImages.bbLogo,50,50,null);
+			System.out.println("1st loaded");
+			//Graphics2D g2d = (Graphics2D) g;
+			try {
 				Thread.sleep(3000);
-				
-				loadImage(g, MenuImages.tbLogo);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			hasTwice = true;
+			paint(g);
+		} else if(hasRun && hasTwice && !hasThree) {
+			try {
+				//loadImage(g, MenuImages.bbLogo);
+
+				//loadImage(g, MenuImages.tbLogo);
 				//loadImage(g, MenuImages.tbLogo);
 				g.drawImage(MenuImages.tbLogo, 50, 50, null);
 				System.out.println("2nd loaded");
-				
+
 				Thread.sleep(3000);
-				hasRun++;
-				hasTwice = true;
+				
 			}
-			hasRun = true;
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			hasThree = true;
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		hasRun = true;
+		this.paint(g);
 	}
-}*/
-//http://www.java2s.com/Code/Java/2D-Graphics-GUI/Fadeoutanimageimagegraduallygetmoretransparentuntilitiscompletelyinvisible.htm
+}

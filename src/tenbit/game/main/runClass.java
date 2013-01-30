@@ -37,6 +37,7 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	
 	private int cred = 0;
 	
+	//MouseEvents used throughout the game
 	private MouseEvent event1;
 	private MouseEvent event2;
 	private MouseEvent event3;
@@ -59,16 +60,14 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	Listeners mwl = new Listeners();
 	Listeners kl = new Listeners();
 	Map map = new Map();
-	Setup setupInstance = new Setup();
 	public static Setup setup;
-	//LoadLogos ll = new LoadLogos();
+	LoadLogos ll = new LoadLogos();
 
 	public RunClass(JFrame par) 
 	{
 		jWidth = getWidth();
 		jHeight = getHeight();
 		new Thread(this).start();
-		HandlerClass hc = new HandlerClass();
 		
 		setup = new Setup();
 		setup.addObserver(this);
@@ -77,36 +76,15 @@ public class RunClass extends JPanel implements Runnable, Observer {
 		this.addMouseListener(setup);
 		addObservers();
 		
-		WheelClass wc = new WheelClass();
-		keyHandler kh = new keyHandler();
-		addMouseListener(hc);
-	    addMouseMotionListener(hc);
-	    addKeyListener(kh);
-	    addMouseWheelListener(wc);
 	    menu = new MainMenu(true);
 	    menu.checkButtons();
 	    SystemLogger.createNewDir();
 	}
 
-	private void setEvent(MouseEvent e1, MouseEvent e2, MouseEvent e3, MouseEvent e4, MouseEvent e5) {
-		event1 = e1;
-		event2 = e2;
-		event3 = e3;
-		event4 = e4;
-		event5 = e5;
-	}
-	private void setWheelEvent(MouseWheelEvent mwe1) {
-		wheelEvent1 = mwe1;
-	}
-	private void setKeyEvent(KeyEvent ke1, KeyEvent ke2, KeyEvent ke3) {
-		keyEvent1 = ke1;
-		keyEvent2 = ke2;
-		keyEvent3 = ke3;
-	}
 	private void addObservers() {
 		setup.addObserver(new MousePos());
 		setup.addObserver(new Map());
-		//setup.addObserver(new Cursor());
+		setup.addObserver(menu);
 	}
 	
 	public void paint( Graphics window )
@@ -120,19 +98,11 @@ public class RunClass extends JPanel implements Runnable, Observer {
         ml = new Listeners(event1, event2, event3, event4, event5);
         mwl = new Listeners(wheelEvent1);
         kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
-        //ll.paint(window);
+        ll.paint(window);
         //menu.paint(window);
-        map.paint(window);
+        //map.paint(window);
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
-	    //ll.paint(window);
-        //menu.paint(window); 
-        map.paint(window);
-        mousepos = new Info(true, 1);
-	    mousepos.paint(window); 
-	    //window.drawImage(MenuImages.bbLogo, 50, 50, null);
-		//System.out.println("1st loaded");
-	    //window.drawImage(MenuImages.tbLogo, 0, 0, null);
 	}
         @Override
         public void run()
@@ -148,87 +118,6 @@ public class RunClass extends JPanel implements Runnable, Observer {
             } catch(InterruptedException e) {
             }
   	}
-
-    private class HandlerClass extends MouseInputAdapter {
-    	private MouseEvent me1;
-    	private MouseEvent me2;
-    	private MouseEvent me3;
-    	private MouseEvent me4;
-    	private MouseEvent me5;
-
-		@Override
-		public void mouseClicked(MouseEvent e1) {
-			me1 = e1;
-			isClicked = true;
-			updateSize();
-		}
-
-		@Override
-		public void mouseDragged(MouseEvent e2) {
-			me2 = e2;
-			updateSize();
-		}
-
-		@Override
-		public void mouseMoved(MouseEvent e3) {
-			me3 = e3;
-			updateSize();
-		}
-		@Override
-		public void mouseReleased(MouseEvent e4) {
-			me4 = e4;
-			isPressed = false;
-			updateSize();
-		}
-		@Override
-		public void mousePressed(MouseEvent e5) {
-			me5 = e5;
-			isPressed = true;
-			updateSize();
-		}
-		private void updateSize() {
-			setEvent(me1, me2, me3, me4, me5);
-		}
-    }
-    private class WheelClass implements MouseWheelListener {
-    	private MouseWheelEvent we1;
-    	
-		@Override
-		public void mouseWheelMoved(MouseWheelEvent mwe1) {
-			we1 = mwe1;
-			map.setWheelInfo(true, mwe1.getWheelRotation());
-			updateEvent();
-		}
-		private void updateEvent() {
-			setWheelEvent(we1);
-		}
-    }
-    private class keyHandler implements KeyListener {
-    	private KeyEvent ke1;
-    	private KeyEvent ke2;
-    	private KeyEvent ke3;
-    	
-		@Override
-		public void keyPressed(KeyEvent e1) {
-			ke1 = e1;
-			updateKeys();
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e2) {
-			ke2 = e2;
-			updateKeys();
-		}
-		
-		@Override
-		public void keyTyped(KeyEvent e3) {
-			ke3 = e3;
-			updateKeys();
-		}
-    	private void updateKeys() {
-    		setKeyEvent(ke1, ke2, ke3);
-    	}		
-    }
 
 	@Override
 	public void updateKey(KeyEvent keyEvent) {

@@ -29,7 +29,7 @@ import tenbit.game.main.info.Info;
 import tenbit.game.main.info.MousePos;
 import tenbit.game.main.window.*;
 
-public class MainMenu extends MouseInputAdapter {
+public class MainMenu implements Observer {
 	private MouseXY mClick;
 	private MouseXY mMove = new MouseXY();
 	private MouseXY mDrag = new MouseXY();
@@ -81,14 +81,6 @@ public class MainMenu extends MouseInputAdapter {
 		currentMenu = "Main Menu";
 		run = start;
 		currentMenu = "Loading";
-		startMouse();
-		//System.out.println(backGround.getWidth() + "   " + backGround.getHeight());
-	}
-	private void startMouse() {
-		mouseMoved(move);
-		mouseDragged(drag);	
-		mouseReleased(release);
-		mouseClicked(click);
 	}
 	public void paint(Graphics window) {
 		width = RunClass.jWidth;
@@ -102,7 +94,6 @@ public class MainMenu extends MouseInputAdapter {
 	    mousepos.paint(window);
     	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
 		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
-	    g2.drawString(new Boolean(RunClass.isPressed).toString(), 110, 15);
 		paintButtons(g2);
 	}
 	
@@ -206,27 +197,6 @@ public class MainMenu extends MouseInputAdapter {
 		}
 	}
 	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(e != null) {
-			
-		}
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if(e != null) {
-			mDrag = new MouseXY(e);
-			x = mDrag.getX();
-			y = mDrag.getY();
-		}
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if( e != null) {
-
-		}
-	}
 	public void campaignMenu() {
 		
 	}
@@ -241,5 +211,15 @@ public class MainMenu extends MouseInputAdapter {
 	}
 	public void exitGame() {
 		System.exit(1);
+	}
+	@Override
+	public void updateKey(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateMouse(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
+		
 	}
 }

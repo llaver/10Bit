@@ -24,6 +24,11 @@ public class Boot extends JFrame
     public static int WIDTH = 800;
     public static int HEIGHT = 600;
     
+    /**
+     * Creates the JFrame and calls RunClass 
+     *
+     * @see         RunClass
+     */
     public Boot() 
     {
         super("Boot"); 
@@ -40,6 +45,9 @@ public class Boot extends JFrame
         setVisible(true);        
     }
     
+    /**
+     * Starts the game and calls the constructor of the boot class
+     */
     public static void main( String args[] )
 	{
     	System.out.println("OS Name: " + System.getProperty("os.name") + "\t OS Version: " + System.getProperty("os.version"));

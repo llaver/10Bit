@@ -33,7 +33,7 @@ import tenbit.game.main.constants.*;
 import tenbit.game.main.info.Info;
 import tenbit.game.main.window.*;
 
-public class MenuKeyboard extends MainMenu implements KeyListener, Observer, Observable {
+public class MenuKeyboard extends MainMenu implements Observer {
 	
 	private ArrayList<Observer> obsList;
 	private int currentButton;
@@ -85,29 +85,16 @@ public class MenuKeyboard extends MainMenu implements KeyListener, Observer, Obs
 		else if(currentButton==4)
 			g2d.drawImage(qgImages[0], 245, 500, null);
 	}
-	
+
 	@Override
-	public void notifyObserversKey(KeyEvent keyEvent) {
-		for(Observer obs : obsList){
-			obs.updateKey(keyEvent);
-		}
+	public void updateKey(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0){
-	}
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
-	@Override
-	public void notifyObserversMouse(MouseEvent mouseEvent) {
-	}
-	@Override
-	public void updateKey(KeyEvent keyEvent) {
-	}
-	@Override
 	public void updateMouse(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
 		
-	}
-	
+	}	
 }
