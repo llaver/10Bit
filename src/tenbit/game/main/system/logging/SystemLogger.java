@@ -10,8 +10,8 @@ import java.lang.System;
 import tenbit.game.main.system.DateAndTime;
 
 public class SystemLogger {
-	private static String osVer = System.getProperty("os.name");;
-	private static String userHome = System.getProperty("user.home");;
+	private static String osVer = System.getProperty("os.name");
+	private static String userHome = System.getProperty("user.home");
 	
 	public SystemLogger() {
 		
