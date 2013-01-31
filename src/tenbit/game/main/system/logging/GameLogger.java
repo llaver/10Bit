@@ -1,7 +1,10 @@
 package tenbit.game.main.system.logging;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import tenbit.game.main.system.DateAndTime;
 
@@ -43,12 +46,12 @@ public class GameLogger {
 		try {
 			if(eOrS == "e") {
 				String dir = userHome + getDocsFolder() + dirE;
-				String logName = "errlog" + DateAndTime.getDate() + " " + DateAndTime.getTime();
+				String logName = "errlog " + DateAndTime.getDate() + ".txt";
 				new File(dir, logName).createNewFile();
 			}
 			else if(eOrS == "s") {
 				String dir = userHome + getDocsFolder() + dirS;
-				String logName = "syslog" + DateAndTime.getDate() + " " + DateAndTime.getTime();
+				String logName = "syslog " + DateAndTime.getDate() + ".txt";
 				new File(dir, logName).createNewFile();
 			}
 		}
@@ -57,7 +60,7 @@ public class GameLogger {
 		}
 	}
 	
-	public static void logAction(String s1) {
+	public static void logAction(String s) {
 		try {
 			if(!(new File(userHome + getDocsFolder() + dirS).exists())) {
 				createNewDir("s");
@@ -65,8 +68,10 @@ public class GameLogger {
 			
 			createNewLog("s");
 			
-			//log
-			File f = new File(userHome + getDocsFolder() + dirS + "syslog" + DateAndTime.getDate() + " " + DateAndTime.getTime());
+			File f = new File(userHome + getDocsFolder() + dirS + "syslog " + DateAndTime.getDate() + ".txt");
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(f, true)));	
+			pw.println("[" + DateAndTime.getTime() + "]" + s);
+			pw.close();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -81,15 +86,18 @@ public class GameLogger {
 			
 			createNewLog("e");
 			
-			//log
+			File f = new File(userHome + getDocsFolder() + dirE + "errlog " + DateAndTime.getDate() + ".txt");
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(f, true)));	
+			pw.println("[" + DateAndTime.getTime() + "]" + e.getStackTrace().toString());
+			pw.close();
 		}
 		catch(Exception e1) {
 			e1.printStackTrace();
 		}
 	}
-	
+	/*
 	public static void main(String[] args) {
 		GameLogger.logAction("S");
 		GameLogger.logAction(new IOException());
-	}
+	}*/
 }

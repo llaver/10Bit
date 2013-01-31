@@ -25,7 +25,6 @@ import tenbit.game.main.engine.map.Cursor;
 import tenbit.game.main.engine.map.Map;
 import tenbit.game.main.info.Info;
 import tenbit.game.main.info.MousePos;
-import tenbit.game.main.system.logging.SystemLogger;
 
 public class RunClass extends JPanel implements Runnable, Observer {
 	private boolean[] keys;
@@ -78,7 +77,6 @@ public class RunClass extends JPanel implements Runnable, Observer {
 		
 	    menu = new MainMenu(true);
 	    menu.checkButtons();
-	    SystemLogger.createNewDir();
 	}
 
 	private void addObservers() {
@@ -99,10 +97,16 @@ public class RunClass extends JPanel implements Runnable, Observer {
         mwl = new Listeners(wheelEvent1);
         kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
         //ll.paint(window);
+<<<<<<< HEAD
         menu.paint(window);
         //map.paint(window);
+=======
+        //menu.paint(window);
+        map.paint(window);
+>>>>>>> GameLogger 1/31/13
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
+	    window.drawImage(MapImages.rock,0,0,null);
 	}
         @Override
         public void run()
