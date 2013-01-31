@@ -100,6 +100,7 @@ public class MainMenu implements Observer {
 	public void checkButtons() {
 		File[] f = new File[5];
 		titledButtons.keySet().toArray(f);
+		System.out.println("Status: Preparing Images... ");
 		for(int i = 0; i < f.length; i++) {
 			File dir = f[i];
 			for(int j = 0; j < dir.listFiles().length; j++) {
@@ -123,8 +124,9 @@ public class MainMenu implements Observer {
 					System.out.println("QG j:" + j + " i:" + i);
 					qgButtons = dir.listFiles();
 				}
-			}
+			} 
 		}
+		System.out.println(" Done.");
 		try {
 			for(int i = 0; i < f.length; i++) {
 				for(int j = 0; j < 3; j++) {
@@ -214,7 +216,6 @@ public class MainMenu implements Observer {
 	}
 	@Override
 	public void updateKey(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override

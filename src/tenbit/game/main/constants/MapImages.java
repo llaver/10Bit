@@ -20,11 +20,14 @@ public final class MapImages {
 	public static BufferedImage snow;
 	public static BufferedImage dirt;
 	
-	public MapImages() throws IOException {
-		rock = ImageIO.read(rockItem);
-    	grass = ImageIO.read(grassTerrain);
-    	snow = ImageIO.read(snowTerrain);
-    	dirt = ImageIO.read(dirtTerrain);
+	public MapImages() {
+		try {
+			rock = ImageIO.read(rockItem);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
 	}
 
 }

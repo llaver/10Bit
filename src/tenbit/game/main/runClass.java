@@ -98,8 +98,8 @@ public class RunClass extends JPanel implements Runnable, Observer {
         ml = new Listeners(event1, event2, event3, event4, event5);
         mwl = new Listeners(wheelEvent1);
         kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
-        ll.paint(window);
-        //menu.paint(window);
+        //ll.paint(window);
+        menu.paint(window);
         //map.paint(window);
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
