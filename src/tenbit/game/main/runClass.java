@@ -97,13 +97,10 @@ public class RunClass extends JPanel implements Runnable, Observer {
         mwl = new Listeners(wheelEvent1);
         kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
         //ll.paint(window);
-<<<<<<< HEAD
-        menu.paint(window);
+        //menu.paint(window);
         //map.paint(window);
-=======
         //menu.paint(window);
         map.paint(window);
->>>>>>> GameLogger 1/31/13
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
 	    window.drawImage(MapImages.rock,0,0,null);
