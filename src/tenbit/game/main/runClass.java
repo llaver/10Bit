@@ -51,6 +51,7 @@ public class RunClass extends JPanel implements Runnable, Observer {
 	public static int jHeight;
 	public static boolean isPressed = false;
 	public static boolean isClicked = false;
+	public static boolean start = false;
 	
 	Info info = new Info();
 	Info mousepos;
@@ -96,14 +97,23 @@ public class RunClass extends JPanel implements Runnable, Observer {
         ml = new Listeners(event1, event2, event3, event4, event5);
         mwl = new Listeners(wheelEvent1);
         kl = new Listeners(keyEvent1, keyEvent2, keyEvent3);
+<<<<<<< HEAD
         //ll.paint(window);
         //menu.paint(window);
         //map.paint(window);
         //menu.paint(window);
         map.paint(window);
+=======
+        menu.paint(window);
+>>>>>>> Final Commit Before Upload...
         mousepos = new Info(true, 1);
 	    mousepos.paint(window);
 	    window.drawImage(MapImages.rock,0,0,null);
+	    //map.paint(window);
+	    System.out.println(start);
+	    if(start) {
+	    	map.paint(window);
+	    }
 	}
         @Override
         public void run()
@@ -128,8 +138,12 @@ public class RunClass extends JPanel implements Runnable, Observer {
 
 	@Override
 	public void updateMouse(MouseEvent mouseEvent) {
-		// TODO Auto-generated method stub
-		
+			System.out.println("lol");	
+	}
+	
+	@Override
+	public void updateClick(MouseEvent clickEvent) {
+		isClicked = true;	
 	}
 }
 

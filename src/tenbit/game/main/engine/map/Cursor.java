@@ -42,5 +42,10 @@ public class Cursor implements Observer {
 	public void updateMouse(MouseEvent mouseEvent) {
 		
 	}
+	@Override
+	public void updateClick(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

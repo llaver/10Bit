@@ -112,4 +112,9 @@ public class MousePos extends MouseInputAdapter implements Observer {
 	public void updateMouse(MouseEvent mouseEvent) {
 		mouseMoved(mouseEvent);
 	}
+	@Override
+	public void updateClick(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -120,4 +120,9 @@ public class Map implements Observer {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+	public void updateClick(MouseEvent mouseEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }

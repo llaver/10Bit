@@ -7,5 +7,6 @@ public interface Observable {
 
 	public void notifyObserversKey(KeyEvent keyevent);
 	public void notifyObserversMouse(MouseEvent mouseEvent);
+	void notifyObserversClick(MouseEvent mouseEvent);
 
 }

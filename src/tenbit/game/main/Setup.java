@@ -30,7 +30,7 @@ public class Setup implements KeyListener, MouseListener, MouseMotionListener, O
    }
    
    public void mouseClicked(MouseEvent e) {
-	   notifyObserversMouse(e);
+	   notifyObserversClick(e);
    }
    public void mouseDragged(MouseEvent e) {
 	   notifyObserversMouse(e);
@@ -45,7 +45,7 @@ public class Setup implements KeyListener, MouseListener, MouseMotionListener, O
 	   notifyObserversMouse(e);
    }
    public void mousePressed(MouseEvent e) {
-	   notifyObserversMouse(e);
+	   notifyObserversClick(e);
    }
    public void mouseReleased(MouseEvent e) {
 	   notifyObserversMouse(e);
@@ -61,6 +61,14 @@ public class Setup implements KeyListener, MouseListener, MouseMotionListener, O
    
    @Override
    public void notifyObserversMouse(MouseEvent mouseEvent) {
+	   for(Observer obs : obsList)
+       {
+           obs.updateMouse(mouseEvent);
+       }
+   	
+   }
+   @Override
+   public void notifyObserversClick(MouseEvent mouseEvent) {
 	   for(Observer obs : obsList)
        {
            obs.updateMouse(mouseEvent);

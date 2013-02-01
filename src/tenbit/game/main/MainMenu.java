@@ -39,10 +39,9 @@ public class MainMenu implements Observer {
 	private int y;
 	private boolean once = false;
 	private boolean run = false;
-	private MouseEvent move = Listeners.mMoved;
-	private MouseEvent click = Listeners.mClick;
-	private MouseEvent drag = Listeners.mDrag;
-	private MouseEvent release = Listeners.mReleased;
+	private boolean start = false;
+	public static int button = 0;
+	private MouseEvent me;
 	private String currentMenu;
 	
 	//Leaderboard
@@ -94,7 +93,12 @@ public class MainMenu implements Observer {
 	    mousepos.paint(window);
     	g2.drawImage(MenuImages.logoBlack, (width / 4) + 4, 0, null);
 		g2.drawImage(MenuImages.logoWhite, (width / 4), 20, null);
+		if(!start) {
 		paintButtons(g2);
+		} else {
+			RunClass.start = true;
+		}
+		
 	}
 	
 	public void checkButtons() {
@@ -148,12 +152,14 @@ public class MainMenu implements Observer {
 		g2d.drawImage(lbImages[1], 245, 415, null);
 		g2d.drawImage(qgImages[1], 245, 500, null);
 		//Button are all 300x70
-		if((x >= 245 && x <= 545) && !RunClass.isPressed) {
+		if((x >= 245 && x <= 545) && !RunClass.isClicked) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[2], 245, 160, null);
+				start = true;
 			}
 			else if(y >= 245 && y <= 315) {
 				g2d.drawImage(lgImages[2], 245, 245, null);
+				start = true;
 			}
 			else if(y >= 330 && y <= 400) {
 				g2d.drawImage(opImages[2], 245, 330, null);
@@ -164,37 +170,47 @@ public class MainMenu implements Observer {
 			else if(y >= 500 && y <= 570) {
 				g2d.drawImage(qgImages[2], 245, 500, null);
 			}
-		} else if((x >= 245 && x <= 545) && RunClass.isPressed) {
+		} else if((x >= 245 && x <= 545) && RunClass.isClicked) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[0], 245, 160, null);
+				start = true;
 			}
 			else if(y >= 245 && y <= 315) {
 				g2d.drawImage(lgImages[0], 245, 245, null);
+				start = true;
 			}
 			else if(y >= 330 && y <= 400) {
 				g2d.drawImage(opImages[0], 245, 330, null);
+				start = true;
 			}
 			else if(y >= 415 && y <= 485) {
 				g2d.drawImage(lbImages[0], 245, 415, null);
+				start = true;
 			}
 			else if(y >= 500 && y <= 570) {
 				g2d.drawImage(qgImages[0], 245, 500, null);
+				start = true;
 			}
 		} else if((x >= 245 && x <= 545) && RunClass.isClicked) {
 			if(y >= 160 && y <= 230) {
 				g2d.drawImage(ngImages[1], 245, 160, null);
+				start = true;
 			}
 			else if(y >= 245 && y <= 315) {
 				g2d.drawImage(lgImages[1], 245, 245, null);
+				start = true;
 			}
 			else if(y >= 330 && y <= 400) {
 				g2d.drawImage(opImages[1], 245, 330, null);
+				start = true;
 			}
 			else if(y >= 415 && y <= 485) {
 				g2d.drawImage(lbImages[1], 245, 415, null);
+				start = true;
 			}
 			else if(y >= 500 && y <= 570) {
 				g2d.drawImage(qgImages[1], 245, 500, null);
+				start = true;
 			}
 		}
 	}
@@ -220,7 +236,14 @@ public class MainMenu implements Observer {
 	}
 	@Override
 	public void updateMouse(MouseEvent mouseEvent) {
+		me = mouseEvent;	
+		button = mouseEvent.getButton();
+		System.out.println(mouseEvent.getButton());
+	}
+	@Override
+	public void updateClick(MouseEvent mouseEvent) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 }
